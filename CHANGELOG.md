@@ -14,6 +14,7 @@ Every change to tokens or components gets a line here, newest first.
 Button, Chip, Badge and Banner use standard names. Booleans are booleans. Code and the SDUI schema both change.
 
 - Button: `state` → `disabled` and `loading` (booleans). `icon` (none/leading) → `leadingIcon` (boolean).
+- Chip is split into two components, following eBay Evo: **Filter chip** (`filter_chip`) refines a view and has `dropdown`, `count` and `clearable`; **Input chip** (`input_chip`) picks a value and has only `selected`. The old `chip` schema type is removed.
 - Chip: `left` and `right` → `leadingIcon` (boolean) and `trailingIcon` (`none`, `caret-down`, `close`). The check now shows automatically when selected, so `left: check` is gone. `selected` is a boolean.
 - Badge: `type` removed. Count and dot are separate components (`CountBadge`, `DotBadge`). `emphasis` → `variant`.
 - Banner: `emphasis` → `variant`. `body` → `description`. `action` (on/off) → `actionLabel` (text; empty hides the action).
