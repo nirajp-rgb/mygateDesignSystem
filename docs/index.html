@@ -351,6 +351,7 @@ body.drawer-open #hud{right:520px}
 .dr-body > section h3:not([class^="ds-"]){margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
 #dr-title:focus{outline:none}
 .dr-lede{font-size:16px;color:var(--ink-2);margin:16px 0 0;max-width:60ch}
+.phone-frame{width:375px;max-width:100%;margin:0 auto}
 .dr-stage{border-radius:12px;border:1px solid var(--line);min-height:120px;justify-content:center}
 .dr-stage.center{align-items:center}
 .props{display:flex;flex-direction:column;gap:6px;margin-top:12px}
@@ -803,7 +804,7 @@ bottomnav:`
 $('#ds-css').textContent = BASE_CSS + Object.values(CSS).join('\n');
 
 /* ================= Component definitions ================= */
-const W = 360, WW = 744;
+const W = 360, WW = 744, PHONE = 375;
 const sel = (a, b) => a === b;
 const btnHTML = p => {
   const spin = p.loading ? '<span class="ds-spinner" aria-hidden="true"></span>' : '';
@@ -1026,7 +1027,7 @@ const COMPONENTS = [
   showcase:() => `<div class="grid2">${cardHTML({variant:'outlined',media:'off',actions:'on',title:'Water supply paused tomorrow',body:'Tank cleaning from 10 AM to 2 PM. Please store water tonight.'})}${cardHTML({variant:'elevated',media:'on',actions:'off',title:'Diwali get-together',body:'Clubhouse lawn, Saturday 7 PM. Bring a dish to share.'})}</div>`,
   schema:p => ({ type:'card', variant:p.variant, media:p.media==='on'?{ url:'https://…/notice.png' }:null, badge:{ label:'Notice', tone:'accent' }, meta:'2h ago', title:p.title, body:p.body, actions:p.actions==='on'?[{ type:'button', variant:'ghost', label:'Dismiss' },{ type:'button', variant:'secondary', label:'View details', action:{ type:'navigate', to:'app://notices/123' } }]:[] }) },
 
-{ id:'list-item', name:'List item', group:'containers', w:W,
+{ id:'list-item', name:'List item', group:'containers', w:PHONE, phone:true,
   summary:'One row in a list: a person, a setting or an entry, with optional parts at the start and end.',
   types:[
     { name:'Person', p:{lead:'avatar',trail:'badge'}, desc:'Avatar with initials and a status badge.' },
@@ -1134,7 +1135,7 @@ const COMPONENTS = [
   showcase:() => emptyHTML({icon:'inbox',action:'on',title:'No visitors yet',body:'Guests you invite will appear here with their entry code.'}),
   schema:p => ({ type:'empty_state', icon:PHN[p.icon], title:p.title, body:p.body, action:p.action==='on'?{ type:'button', variant:'primary', label:'Invite a guest', action:{ type:'open_sheet', id:'invite_guest' } }:null }) },
 
-{ id:'appbar', name:'Top app bar', group:'navigation', w:W,
+{ id:'appbar', name:'Top app bar', group:'navigation', w:PHONE, phone:true,
   summary:'The top of a screen. It says where you are and holds the actions for this screen.',
   types:[
     { name:'Small', p:{type:'small'}, desc:'Every screen below the top level. Back, title, up to two actions.' },
@@ -1164,7 +1165,7 @@ const COMPONENTS = [
   showcase:() => `${tabsHTML({style:'underline',count:3,icons:'off'})}${tabsHTML({style:'segmented',count:2,icons:'off'})}<p class="cap">Tap a tab to switch</p>`,
   schema:p => ({ type:'tabs', style:p.style, tabs:TABS.slice(0, +p.count).map(([t, ic]) => ({ id:t.toLowerCase(), label:t, icon:p.icons==='on'?PHN[ic]:null })), selected:'upcoming' }) },
 
-{ id:'bottomnav', name:'Bottom navigation', group:'navigation', w:W,
+{ id:'bottomnav', name:'Bottom navigation', group:'navigation', w:PHONE, phone:true,
   summary:'Moves between the app\'s main sections from anywhere.',
   types:[
     { name:'Labels always', p:{labels:'always'}, desc:'Default. Every item shows its label.' },
@@ -1314,6 +1315,7 @@ const EDGES = [
   ['banner','sheet','inform vs decide'],
 ];
 const ALL = {};
+const frame = (d, html) => d.phone ? `<div class="phone-frame">${html}</div>` : html;
 [...COMPONENTS, ...FOUNDATIONS].forEach(d => ALL[d.id] = d);
 
 /* ================= Build canvas ================= */
@@ -1705,7 +1707,7 @@ function renderDrawer(keepScroll){
   let html = `<header class="dr-head"><div><p class="dr-kicker">${g.n} · ${g.title}</p><h2 id="dr-title" tabindex="-1">${d.name}</h2></div><div class="dr-actions"><a class="dr-doc" href="#doc-${id}">Full docs</a><button class="dr-close" aria-label="Close (Esc)">${CLOSE}</button></div></header>
   <div class="dr-body"><p class="dr-lede">${d.summary}</p>`;
   if (d.props) {
-    html += `<section><div class="stage dr-stage center" id="dr-stage">${d.render(p, 'doc')}</div>
+    html += `<section><div class="stage dr-stage center" id="dr-stage">${frame(d, d.render(p, 'doc'))}</div>
       <div class="props">${propsUI(d, p)}</div></section>`;
     html += sec('Anatomy and tokens', `<p class="note" style="margin:0 0 10px">For the options chosen above. Hover a row to find the part.</p><div id="dr-spec">${specBlock(id, p, 'insp')}</div>`);
   } else if (d.dimMap) {
@@ -1821,7 +1823,7 @@ document.addEventListener('mouseover', e => {
 document.addEventListener('click', e => { const b = e.target.closest('.spec-toggle'); if (!b) return; const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); b.textContent = on ? 'Hide spacing' : 'Show spacing'; b.closest('.spec').classList.toggle('show-pad', on); });
 let rzT; addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(() => annotateAll(document), 150); });
 function updateCode(){ const c = codeFor(active); $('#dr-code').innerHTML = hl(c.text, c.lang); }
-function updatePreview(){ const d = ALL[active]; $('#dr-stage').innerHTML = d.render(propsFor(active), 'doc'); updateCode(); const sp = $('#dr-spec'); if (sp) { sp.innerHTML = specBlock(active, propsFor(active), 'insp'); annotateAll(sp); } }
+function updatePreview(){ const d = ALL[active]; $('#dr-stage').innerHTML = frame(d, d.render(propsFor(active), 'doc')); updateCode(); const sp = $('#dr-spec'); if (sp) { sp.innerHTML = specBlock(active, propsFor(active), 'insp'); annotateAll(sp); } }
 drInner.addEventListener('click', e => {
   if (e.target.closest('.dr-close')) { closeDoc(); return; }
   const pb = e.target.closest('[data-prop][data-val]');
@@ -1904,7 +1906,7 @@ function docComponent(id){
   const tabs = [['overview','Overview'],['usage','Usage'],['specs','Specs'],['code','Code']];
   let h = docHeader(g.title, d.name, d.summary, `<div class="dx-tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" data-dtab="${k}">${l}</button>`).join('')}</div>`);
   if (tab === 'overview') {
-    h += dsec('playground', 'Playground', `<div class="stage dx-stage center" id="dx-play">${d.render(p, 'dx')}</div><div class="props dx-props">${propsUI(d, p)}</div>`, 'Change the options to see every combination. The code tab follows these options.');
+    h += dsec('playground', 'Playground', `<div class="stage dx-stage center" id="dx-play">${frame(d, d.render(p, 'dx'))}</div><div class="props dx-props">${propsUI(d, p)}</div>`, 'Change the options to see every combination. The code tab follows these options.');
     if (d.types) h += dsec('types', 'Types', `<div class="types dx-types">${d.types.map((t, i) => `<div class="type-card"><div class="stage type-stage">${t.render ? t.render('dt' + i) : d.render({...defaultsFor(id), ...t.p}, 'dt' + i)}</div><div class="type-txt"><b>${t.name}</b><span>${esc(t.desc)}</span></div></div>`).join('')}</div>`);
     h += dsec('variants', 'Variants and states', `<table class="var-table dx-table"><thead><tr><th>Property</th><th>Values</th><th>What it does</th><th>Figma</th></tr></thead><tbody>${d.props.filter(pr => !pr.text).map(pr => { const def = pr.def !== undefined ? pr.def : pr.options[0]; return `<tr><td class="mono">${pr.name}</td><td>${pr.options.map(o => o === def ? `<b>${o}</b>` : o).join(', ')}</td><td>${esc(pr.desc || '')}</td><td>${esc(pr.figma || '—')}</td></tr>`; }).join('')}<tr><td class="mono">content</td><td>${d.props.filter(pr => pr.text).map(pr => pr.name).join(', ') || 'none'}</td><td>Text the server sends.</td><td>—</td></tr></tbody></table>`, 'Bold is the default.');
     if (related(id).length) h += dsec('related', 'Related', `<div class="rel">${related(id).map(r => `<a href="#doc-${r.id}">${ALL[r.id].name}<span>${r.label}</span></a>`).join('')}</div>`);
@@ -1963,12 +1965,12 @@ function renderDoc(id, keepScroll){
 docsEl.addEventListener('click', e => {
   const dt = e.target.closest('[data-dtab]'); if (dt) { docTab[docId] = dt.dataset.dtab; renderDoc(docId); return; }
   const pb = e.target.closest('[data-prop][data-val]');
-  if (pb && ALL[docId] && ALL[docId].props) { propsFor(docId)[pb.dataset.prop] = parseProp(docId, pb.dataset.prop, pb.dataset.val); $$(`[data-prop="${pb.dataset.prop}"][data-val]`, dxPage).forEach(b => b.setAttribute('aria-checked', b === pb)); $('#dx-play').innerHTML = ALL[docId].render(propsFor(docId), 'dx'); updateDocCode(); return; }
+  if (pb && ALL[docId] && ALL[docId].props) { propsFor(docId)[pb.dataset.prop] = parseProp(docId, pb.dataset.prop, pb.dataset.val); $$(`[data-prop="${pb.dataset.prop}"][data-val]`, dxPage).forEach(b => b.setAttribute('aria-checked', b === pb)); $('#dx-play').innerHTML = frame(ALL[docId], ALL[docId].render(propsFor(docId), 'dx')); updateDocCode(); return; }
   const tb = e.target.closest('[data-tab]'); if (tb) { codeTab[docId] = tb.dataset.tab; $$('[data-tab]', dxPage).forEach(b => { b.setAttribute('aria-checked', b === tb); b.setAttribute('aria-selected', b === tb); }); updateDocCode(); return; }
   const cc = e.target.closest('[data-copy-code]'); if (cc) { copyText(codeFor(docId).text, cc, 'Copy'); return; }
   const tc = e.target.closest('[data-toc]'); if (tc) { const s = document.getElementById(tc.dataset.toc); if (s) s.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'start' }); return; }
 });
-docsEl.addEventListener('input', e => { const i = e.target.closest('.prop-in'); if (!i || !ALL[docId]) return; propsFor(docId)[i.dataset.prop] = i.value; $('#dx-play').innerHTML = ALL[docId].render(propsFor(docId), 'dx'); updateDocCode(); });
+docsEl.addEventListener('input', e => { const i = e.target.closest('.prop-in'); if (!i || !ALL[docId]) return; propsFor(docId)[i.dataset.prop] = i.value; $('#dx-play').innerHTML = frame(ALL[docId], ALL[docId].render(propsFor(docId), 'dx')); updateDocCode(); });
 $('#viewswitch').addEventListener('click', e => { const b = e.target.closest('[data-view]'); if (!b) return;
   if (b.dataset.view === 'docs') location.hash = 'doc-' + (active || docId);
   else { const back = docId !== 'intro' && ALL[docId] ? docId : ''; showView('overview'); if (back) { location.hash = back; } else setHash(''); } });
