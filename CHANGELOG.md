@@ -12,6 +12,7 @@ Every change to tokens or components gets a line here, newest first.
 ### Components
 
 - Badge, Banner: the outlined emphasis uses the new `Content/*-outlined` tokens. Neutral outlined badges are unchanged, because `Border/dark` is 2.1:1 in Dark and can't carry text.
+- Chip: left and right icon slots. The left slot takes the check (shown when selected) or any icon, which the check replaces when the chip is selected. The right slot takes a dropdown caret or a clear icon. Figma properties are listed in the docs.
 
 ## 0.1.0 · 2026-11-16
 
