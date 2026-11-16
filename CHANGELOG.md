@@ -9,6 +9,16 @@ Every change to tokens or components gets a line here, newest first.
 - Changed: Dark `Content/positive` → green/400, `Content/negative` → red/400 and `Content/info` → blue/400: the same primitives as `Border/positive`, `Border/negative` and `Border/info`. Outlined badges and banners now have one colour for text and outline. `Content/warning` already matched `Border/warning`.
 - Contrast: these Dark text colours are below 4.5:1 on `Surface/primary` (success 3.8:1, info 3.1:1) and on their subtle fills (success 3.3:1, info 3.4:1). Error passes. `npm run check` reports them.
 
+### Breaking: component props
+
+Button, Chip, Badge and Banner use standard names. Booleans are booleans. Code and the SDUI schema both change.
+
+- Button: `state` → `disabled` and `loading` (booleans). `icon` (none/leading) → `leadingIcon` (boolean).
+- Chip: `left` and `right` → `leadingIcon` (boolean) and `trailingIcon` (`none`, `caret-down`, `close`). The check now shows automatically when selected, so `left: check` is gone. `selected` is a boolean.
+- Badge: `type` removed. Count and dot are separate components (`CountBadge`, `DotBadge`). `emphasis` → `variant`.
+- Banner: `emphasis` → `variant`. `body` → `description`. `action` (on/off) → `actionLabel` (text; empty hides the action).
+- Figma properties need the same names. Until they are renamed, the Figma column in each Variants table shows the current Figma name.
+
 ### Components
 
 - Chip: left and right icon slots. The left slot takes the check (shown when selected) or any icon, which the check replaces when the chip is selected. The right slot takes a dropdown caret or a clear icon. Figma properties are listed in the docs.
