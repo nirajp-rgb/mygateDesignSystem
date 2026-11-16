@@ -698,57 +698,12 @@ switch:`
 .ds-toggle:disabled{background:var(--color-surface-tertiary)}
 .ds-switch:has(.ds-toggle:disabled){color:var(--color-content-disabled);cursor:not-allowed}`,
 chip:`
-.ds-chip{display:inline-flex;align-items:center;gap:var(--spacing-100);height:var(--sizing-chip-medium);padding:0 var(--spacing-300);border:var(--border-width-default) solid var(--color-border-default);border-radius:var(--border-radius-full);background:var(--color-surface-primary);color:var(--color-content-primary);font:var(--typography-body-default);cursor:pointer;transition:background-color .15s,border-color .15s}
-.ds-chip .ds-icon{width:var(--sizing-icon-small);height:var(--sizing-icon-small)}
-.ds-chip{min-width:56px;max-width:296px}
-.ds-chip--input{max-width:320px}
+.ds-chip{display:inline-flex;align-items:center;gap:var(--spacing-100);height:var(--sizing-chip-medium);min-width:56px;max-width:296px;padding:0 var(--spacing-300);border:var(--border-width-default) solid var(--color-border-default);border-radius:var(--border-radius-full);background:var(--color-surface-primary);color:var(--color-content-primary);font:var(--typography-body-default);cursor:pointer;transition:background-color .15s,border-color .15s}
+.ds-chip--input{max-width:320px;padding-right:var(--spacing-200)}
+.ds-chip .ds-icon{width:var(--sizing-icon-small);height:var(--sizing-icon-small);flex:none}
 .ds-chip__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.ds-chip--lead{padding-left:var(--spacing-200)}
-.ds-chip--trail{padding-right:var(--spacing-200)}
 .ds-chip[aria-pressed="true"]{background:var(--color-surface-action-secondary-subtle);border-color:var(--color-border-action);color:var(--color-content-action);font:var(--typography-body-default-bold)}
-.ds-chip .ds-chip__check,.ds-chip:not([aria-pressed="true"]) .ds-chip__clear,.ds-chip[aria-pressed="true"] .ds-chip__lead{display:none}
-.ds-chip[aria-pressed="true"] .ds-chip__check{display:block}
 .ds-chip:focus-visible{outline:none;box-shadow:0 0 0 3px var(--color-border-focus)}`,
-card:`
-.ds-card{display:flex;flex-direction:column;gap:var(--spacing-300);padding:var(--spacing-400);background:var(--color-surface-primary);border-radius:var(--border-radius-300);color:var(--color-content-primary)}
-.ds-card--outlined{border:var(--border-width-default) solid var(--color-border-default)}
-.ds-card--elevated{box-shadow:var(--elevation-200)}
-.ds-card--filled{background:var(--color-surface-secondary)}
-.ds-card__media{height:96px;border-radius:var(--border-radius-200);background:linear-gradient(135deg,var(--color-surface-action-secondary-subtle),var(--color-surface-tertiary))}
-.ds-card__head{display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-200)}
-.ds-card__meta{font:var(--typography-body-small);color:var(--color-content-tertiary)}
-.ds-card__title{margin:0;font:var(--typography-title-subsection)}
-.ds-card__body{margin:0;font:var(--typography-body-default);color:var(--color-content-secondary)}
-.ds-card__actions{display:flex;justify-content:flex-end;gap:var(--spacing-200)}`,
-'list-item':`
-.ds-list{margin:0;padding:0;list-style:none;background:var(--color-surface-primary);border:var(--border-width-default) solid var(--color-border-default);border-radius:var(--border-radius-300);overflow:hidden}
-.ds-li{display:flex;align-items:center;gap:var(--spacing-300);min-height:var(--sizing-list-item-min-height);padding:var(--spacing-300) var(--spacing-400);color:var(--color-content-primary)}
-.ds-li + .ds-li{border-top:var(--border-width-default) solid var(--color-border-subtle)}
-.ds-li__lead{flex:none;display:grid;place-items:center;width:var(--sizing-avatar-medium);height:var(--sizing-avatar-medium);border-radius:var(--border-radius-full);background:var(--color-surface-action-secondary-subtle);color:var(--color-content-action);font:var(--typography-body-small-bold)}
-.ds-li__lead .ds-icon{width:var(--sizing-icon-medium);height:var(--sizing-icon-medium)}
-.ds-li__text{flex:1;min-width:0;display:flex;flex-direction:column}
-.ds-li__title{font:var(--typography-body-large-bold);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ds-li__sub{font:var(--typography-body-small);color:var(--color-content-secondary)}
-.ds-li__trail{flex:none;display:flex;align-items:center;color:var(--color-content-tertiary)}`,
-sheet:`
-.ds-scrim{display:flex;flex-direction:column;justify-content:flex-end;padding-top:var(--spacing-800);background:var(--color-surface-overlay);border-radius:var(--border-radius-300);overflow:hidden}
-.ds-sheet{display:flex;flex-direction:column;gap:var(--spacing-400);padding:var(--spacing-200) var(--spacing-600) var(--spacing-600);background:var(--color-surface-primary);border-radius:var(--border-radius-500) var(--border-radius-500) 0 0;box-shadow:var(--elevation-300);color:var(--color-content-primary)}
-.ds-sheet__handle{align-self:center;width:36px;height:4px;margin-bottom:var(--spacing-100);border-radius:var(--border-radius-full);background:var(--color-border-dark)}
-.ds-sheet__title{margin:0;font:var(--typography-title-section)}
-.ds-sheet__body{margin:0;font:var(--typography-body-default);color:var(--color-content-secondary)}
-.ds-sheet__actions{display:flex;flex-direction:column;gap:var(--spacing-200)}`,
-banner:`
-.ds-banner{--bn-bg:var(--color-surface-info-subtle);--bn-line:var(--color-border-info);--bn-icon:var(--color-content-info);--bn-fill:var(--color-surface-info-bold);display:flex;align-items:flex-start;gap:var(--spacing-300);padding:var(--spacing-300) var(--spacing-400);border:var(--border-width-default) solid transparent;border-radius:var(--border-radius-200);background:var(--bn-bg);color:var(--bn-icon)}
-.ds-banner--success{--bn-bg:var(--color-surface-positive-subtle);--bn-line:var(--color-border-positive);--bn-icon:var(--color-content-positive);--bn-fill:var(--color-surface-positive-bold)}
-.ds-banner--warning{--bn-bg:var(--color-surface-warning-subtle);--bn-line:var(--color-border-warning);--bn-icon:var(--color-content-warning);--bn-fill:var(--color-surface-warning-bold)}
-.ds-banner--danger{--bn-bg:var(--color-surface-negative-subtle);--bn-line:var(--color-border-negative);--bn-icon:var(--color-content-negative);--bn-fill:var(--color-surface-negative-bold)}
-.ds-banner--outlined{background:var(--color-surface-primary);border-color:var(--bn-line)}
-.ds-banner--filled{background:var(--bn-fill);color:var(--color-content-on-dark)}
-.ds-banner__text{flex:1;display:flex;flex-direction:column;gap:2px;align-items:flex-start}
-.ds-banner__title{margin:0;font:var(--typography-body-default-bold);color:var(--color-content-primary)}
-.ds-banner__body{margin:0;font:var(--typography-body-small);color:var(--color-content-secondary)}
-.ds-banner--filled .ds-banner__title,.ds-banner--filled .ds-banner__body{color:var(--color-content-on-dark)}
-.ds-banner__action{margin-top:var(--spacing-100);padding:0;border:0;background:none;color:inherit;font:var(--typography-body-small-bold);text-decoration:underline;text-underline-offset:3px;cursor:pointer}`,
 badge:`
 .ds-badge{--b-bg:var(--color-surface-tertiary);--b-line:var(--color-border-dark);--b-fg:var(--color-content-secondary);--b-fill:var(--color-surface-inverse);--b-on:var(--color-content-on-contrast);display:inline-flex;align-items:center;justify-content:center;height:20px;padding:0 var(--spacing-200);border:var(--border-width-default) solid transparent;border-radius:var(--border-radius-full);background:var(--b-bg);color:var(--b-fg);font:var(--typography-body-small-bold);white-space:nowrap}
 .ds-badge--accent{--b-bg:var(--color-surface-action-secondary-subtle);--b-line:var(--color-border-action);--b-fg:var(--color-content-action);--b-fill:var(--color-surface-action-secondary-bold);--b-on:var(--color-content-on-dark)}
@@ -835,16 +790,11 @@ const liHTML = (p, k = 0) => {
   return `<li class="ds-li">${lead}<div class="ds-li__text"><span class="ds-li__title">${esc(p.title)}</span>${p.sub?`<span class="ds-li__sub">${esc(p.sub)}</span>`:''}</div>${trail?`<div class="ds-li__trail">${trail}</div>`:''}</li>`;
 };
 const slotIcon = (n, cls) => icon(n).replace('class="ds-icon"', `class="ds-icon ${cls}"`);
-const filterChipHTML = p => {
-  const n = +p.count || 0;
-  const trail = p.dropdown ? slotIcon('caret-down', 'ds-chip__trail') : (p.clearable && p.selected ? slotIcon('close', 'ds-chip__clear') : '');
-  const cls = 'ds-chip ds-chip--filter' + (p.leadingIcon ? ' ds-chip--lead' : '') + (trail ? ' ds-chip--trail' : '');
-  const lead = p.leadingIcon ? slotIcon('calendar', 'ds-chip__lead') : '';
-  const check = p.selected ? slotIcon('check', 'ds-chip__check') : '';
-  const label = esc(p.label) + (n ? ` (${n})` : '');
-  return `<button class="${cls}" aria-pressed="${!!p.selected}"${p.dropdown ? ' aria-haspopup="dialog"' : ''}>${check}${lead}<span class="ds-chip__label">${label}</span>${trail}</button>`;
+const chipHTML = p => {
+  const input = p.variant === 'input';
+  const trail = input ? slotIcon(p.selected ? 'close' : 'plus', 'ds-chip__trail') : '';
+  return `<button class="ds-chip ds-chip--${input ? 'input' : 'filter'}" aria-pressed="${!!p.selected}"><span class="ds-chip__label">${esc(p.label)}</span>${trail}</button>`;
 };
-const inputChipHTML = p => `<button class="ds-chip ds-chip--input" aria-pressed="${!!p.selected}">${slotIcon(p.selected ? 'close' : 'plus', 'ds-chip__trail')}<span class="ds-chip__label">${esc(p.label)}</span></button>`;
 const badgeHTML = p => `<span class="ds-badge ds-badge--${p.tone} ds-badge--${p.variant}">${esc(p.label)}</span>`;
 const countBadgeHTML = n => `<span class="ds-badge ds-badge--count" aria-label="${n > 99 ? 'More than 99' : n} unread">${n > 99 ? '99+' : n}</span>`;
 const dotBadgeHTML = () => '<span class="ds-badge ds-badge--dot" aria-label="New"></span>';
@@ -945,45 +895,25 @@ const COMPONENTS = [
   showcase:() => `${fieldHTML({label:'Flat number', help:'As written on your door', placeholder:'B-1204', state:'default', icon:'none'}, 'c-flat')}${fieldHTML({label:'Search residents', help:'Name or flat number', placeholder:'Search', state:'default', icon:'search'}, 'c-search')}${fieldHTML({label:'Flat number', help:'', placeholder:'B-12', state:'error', icon:'none'}, 'c-err')}`,
   schema:p => ({ type:'text_field', id:'flat_number', label:p.label, helperText:p.help, placeholder:p.placeholder, leadingIcon:p.icon==='search'?'magnifying-glass':null, state:p.state, validation:{ pattern:'^[A-Z]-\\d{3,4}$', message:'Enter a flat number like B-1204' } }) },
 
-{ id:'filter-chip', name:'Filter chip', group:'inputs', w:W,
-  summary:'Refines the list or results on this screen. Tap to apply a value; some chips open a menu of values.',
+{ id:'chip', name:'Chip', group:'inputs', w:W,
+  summary:'A small pill that filters a view or picks a value. Two variants: filter and input.',
   types:[
-    { name:'Discrete', p:{selected:false,label:'Electrician'}, desc:'Tap to apply the value. Tap again to remove it. The default, and the one to use first.' },
-    { name:'Selected', p:{selected:true,label:'Electrician'}, desc:'The value is applied. The check is shown as well as the colour, so the state is not carried by colour alone.' },
-    { name:'Dropdown', p:{dropdown:true,label:'Tower'}, desc:'Opens a menu of values. Single choice: the label becomes the choice. Multi-choice: a count is added in brackets, like "Tower (2)".' },
-    { name:'Clearable', p:{selected:true,clearable:true,label:'Plumber'}, desc:'One filter applied. The trailing close icon removes it.' }],
-  guidelines:['Filter chips refine the current view. They never navigate. Use tabs to move between views.','Labels are a noun or noun phrase, sentence case, 1 to 3 words, at most 37 characters. Do not add ending punctuation.','Keep one row. Scroll it horizontally on small screens; never wrap or stack filter chips.','Never override the height to fit a longer label. Let it truncate.','Use the close icon to remove a single filter. Provide a "Clear all" control when several are applied.'],
-  use:['Filtering a list, search results or a table.','Showing the top filter values or groups, not every option.'],
-  avoid:['Input or choosing a value for a form. Use an input chip.','Navigation to another screen. Use tabs.','Several rows of chips. Use one row and scroll it.'],
-  anatomy:[['Container','Pill, 32px high (sizing/chip/medium). Min 56px, max 296px wide.'],['Check','Shown when applied.'],['Leading icon','Optional, 16px. Use it sparingly.'],['Label','Body Default; bold when applied. Truncates on one line.'],['Trailing icon','Caret for a menu, or close to clear a single applied filter.']],
-  a11y:['A button with aria-pressed. Discrete chips toggle this state.','A dropdown chip adds aria-haspopup="dialog". Its label names the current choice.','The check and the count carry the state for people who cannot see the colour change.','Icons are aria-hidden; the label says everything.'],
+    { name:'Filter', p:{variant:'filter',selected:false,label:'Electrician'}, desc:'Refines the list on this screen. Tap to apply it; tap again to remove it.' },
+    { name:'Filter, applied', p:{variant:'filter',selected:true,label:'Electrician'}, desc:'The filter is applied. Blue tint and bold label.' },
+    { name:'Input', p:{variant:'input',selected:false,label:'Plumber'}, desc:'Picks a value for a form. Plus icon at the end.' },
+    { name:'Input, added', p:{variant:'input',selected:true,label:'Plumber'}, desc:'The value is added. Close icon at the end removes it.' }],
+  guidelines:['Filter chips refine the current view. They never navigate. Use tabs to move between views.','Input chips pick or add values in a form, such as tags or preferences. Keep them out of filter rows.','Labels are a noun or noun phrase in sentence case, 1 to 3 words. Filter labels up to 37 characters; input labels up to 24.','Keep one row. Scroll it on small screens; never wrap or stack chips.','Do not change the height to fit a longer label. Let it truncate.'],
+  use:['Filtering a list, search results or a table.','Picking tags, categories or preferences in a form.'],
+  avoid:['Navigation to another screen. Use tabs.','Several rows of chips.','Icons that only decorate.'],
+  anatomy:[['Container','Pill, 32px high. Min 56px, max 296px wide (320px for input).'],['Label','Body Default, bold when applied. Truncates on one line.'],['Trailing icon','Input variant only, 16px: plus when not added, close when added.']],
+  a11y:['A button with aria-pressed.','The trailing icon is aria-hidden; the label says what the chip is.','Removing an input chip keeps focus in the field.'],
   props:[
-    {name:'selected',bool:true,options:[false,true],def:true,desc:'Value is applied. Discrete chips toggle this on tap.',figma:'Selected (variant)'},
-    {name:'dropdown',bool:true,options:[false,true],def:false,desc:'Opens a menu. Replaces the close icon.',figma:'Dropdown (boolean)'},
-    {name:'count',options:['0','2','3'],def:'0',desc:'Multi-choice count shown in brackets. 0 hides it.',figma:'Count (text)'},
-    {name:'leadingIcon',bool:true,options:[false,true],def:false,desc:'Calendar icon before the label. The check replaces it when selected.',figma:'Leading icon (boolean) + instance swap'},
-    {name:'clearable',bool:true,options:[false,true],def:false,desc:'Shows a close icon when selected. Tapping it removes the filter.',figma:'Clearable (boolean)'},
-    {name:'label',text:true,def:'Plumber'}],
-  render:p => filterChipHTML(p),
-  showcase:() => `<div class="row">${['All','Plumber','Electrician','Carpenter','Painter'].map((t, i) => filterChipHTML({ selected:i===0||i===2, label:t })).join('')}</div><div class="row">${filterChipHTML({ selected:false, label:'Tower', dropdown:true })}${filterChipHTML({ selected:true, label:'Tower', dropdown:true, count:'2' })}${filterChipHTML({ selected:true, label:'Plumber', clearable:true })}</div><p class="cap">Tap a chip to apply it. Second row: dropdown, dropdown with a count, clearable.</p>`,
-  schema:p => ({ type:'filter_chip', label:p.label, selected:p.selected, dropdown:p.dropdown, count:+p.count||null, leadingIcon:p.leadingIcon?'calendar-blank':null, clearable:p.clearable, action:p.dropdown ? { type:'open_sheet', sheet:'filter_options', key:'tower' } : { type:'filter', key:'service', value:p.label.toLowerCase() } }) },
-
-{ id:'input-chip', name:'Input chip', group:'inputs', w:W,
-  summary:'A value the user picks or adds to a field, such as a tag, a category or a preference. Tap to add; tap the close icon to remove.',
-  types:[
-    { name:'Unselected', p:{selected:false,label:'Electrician'}, desc:'Shows a plus icon. Tap to add the value.' },
-    { name:'Selected', p:{selected:true,label:'Electrician'}, desc:'Shows a close icon. Tap to remove the value.' }],
-  guidelines:['Use an input chip for values people choose or add, such as tags, categories and preferences.','Use a noun or noun phrase the user selected. Sentence case, 1 to 3 words, at most 24 characters.','Keep input chips in input views. Do not stack them below filter chips; that overwhelms people.','Surface popular values by default so people can add several quickly.'],
-  use:['Picking tags or categories in a form.','Choosing preferences, like the services someone wants.'],
-  avoid:['Filtering a list. Use a filter chip.','Navigation. Use tabs or a button.'],
-  anatomy:[['Container','Pill, 32px high. Min 56px, max 320px wide. Truncates on one line.'],['Label','Body Default.'],['Trailing icon','Plus when unselected, close when selected.']],
-  a11y:['A button with aria-pressed.','The plus and close icons are aria-hidden; the label says what the chip is.','Removing a chip must leave focus somewhere sensible, such as the field.'],
-  props:[
-    {name:'selected',bool:true,options:[false,true],def:true,desc:'Value is added. Shows the close icon. Tapping removes it.',figma:'Selected (variant)'},
+    {name:'variant',options:['filter','input'],def:'filter',desc:'Filter refines a view. Input picks a value for a form.',figma:'Variant'},
+    {name:'selected',bool:true,options:[false,true],def:false,desc:'Applied (filter) or added (input).',figma:'Selected (boolean)'},
     {name:'label',text:true,def:'Electrician'}],
-  render:p => inputChipHTML(p),
-  showcase:() => `<div class="row">${inputChipHTML({ selected:false, label:'Plumber' })}${inputChipHTML({ selected:true, label:'Electrician' })}${inputChipHTML({ selected:true, label:'Weekend visits' })}</div><p class="cap">Tap to add a value. Tap the close icon to remove it.</p>`,
-  schema:p => ({ type:'input_chip', label:p.label, selected:p.selected, action:{ type:'toggle', key:'service', value:p.label.toLowerCase() } }) },
+  render:p => chipHTML(p),
+  showcase:() => `<div class="row">${['All','Plumber','Electrician','Carpenter','Painter'].map((t, i) => chipHTML({ variant:'filter', selected:i===0||i===2, label:t })).join('')}</div><div class="row">${chipHTML({ variant:'input', selected:false, label:'Plumber' })}${chipHTML({ variant:'input', selected:true, label:'Electrician' })}</div><p class="cap">Tap a chip to toggle it. Second row: input variant, not added and added.</p>`,
+  schema:p => ({ type:'chip', variant:p.variant, label:p.label, selected:p.selected, action:p.variant==='input' ? { type:'toggle', key:'service', value:p.label.toLowerCase() } : { type:'filter', key:'service', value:p.label.toLowerCase() } }) },
 
 { id:'checkbox', name:'Checkbox', group:'inputs', w:W,
   summary:'Turns an option on or off, when several options can be chosen independently.',
@@ -1260,7 +1190,7 @@ const FOUNDATIONS = [
     <div class="role"><span class="cap">Interactive · ClearBlue</span><p class="role-p">Links, controls and selection.</p>
       <div class="col" style="align-items:flex-start;gap:12px"><button class="ds-btn ds-btn--link">See payment history</button>
       <div class="row"><label class="ds-check"><input type="checkbox" class="ds-box" checked><span>Auto-pay</span></label><input type="checkbox" role="switch" class="ds-toggle" checked aria-label="Reminders"></div>
-      ${filterChipHTML({ selected:true, label:'Maintenance' })}${tabsHTML({style:'underline',count:2,icons:'off'})}</div></div>
+      ${chipHTML({ variant:'filter', selected:true, label:'Maintenance' })}${tabsHTML({style:'underline',count:2,icons:'off'})}</div></div>
     <div class="role role--grey"><span class="cap">Neutral · around them</span><p class="role-p">Supporting actions and navigation. Shown on page-strong to prove nothing merges.</p>
       <div class="col" style="align-items:flex-start;gap:12px"><div class="row"><button class="ds-btn ds-btn--secondary ds-btn--sm">View bill</button><button class="ds-btn ds-btn--ghost ds-btn--sm">Later</button><button class="ds-iconbtn ds-iconbtn--tonal ds-iconbtn--sm" aria-label="Notifications">${icon('bell')}</button></div>
       ${tabsHTML({style:'segmented',count:2,icons:'off'})}</div></div>
@@ -1322,9 +1252,8 @@ const EDGES = [
   ['button','empty','next step'],
   ['icon-button','appbar','actions in'],
   ['text-field','sheet','forms in'],
-  ['filter-chip','tabs','filter vs switch view'],
-  ['filter-chip','input-chip','never stack input under filter'],
-  ['input-chip','text-field','values for a form'],
+  ['chip','tabs','filter vs switch view'],
+  ['chip','text-field','input values for a form'],
   ['radio','checkbox','one vs many'],
   ['checkbox','list-item','trailing control'],
   ['switch','list-item','trailing control'],
