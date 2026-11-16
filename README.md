@@ -94,8 +94,12 @@ For native apps or the server-driven UI, read `dist/tokens.light.json` and `dist
 - **Count badges:** white on `Surface/nudge` (red/400) is 3.7:1 for 12px text. Mapping nudge to red/600 would fix it.
 - **Meta text:** `Content/tertiary` (gray/500) is 3.6:1. Use it only for timestamps and meta, never for sentences.
 - **Disabled labels:** 1.9:1 in light mode. Disabled text is exempt from WCAG, but it may be too faint.
+- **Outlined status text in dark mode:** `Content/*-outlined` shares the primitive of `Border/*`, so text matches its outline, but the 400 shades are 3.1–4.3:1 on `Surface/primary`. Adding a 300 step would fix both (see `ROADMAP.md`).
 
 ## Not done yet
+
+See [ROADMAP.md](ROADMAP.md) for the full plan. The short list:
+
 
 - The docs site still carries its own copy of the token values. A later step is to make it read `dist/tokens.light.json` and `dist/tokens.dark.json`, so the repo is the only source.
 - `Body Large` line height (20px in the Figma style, 24px on the Figma docs page) needs a decision.
