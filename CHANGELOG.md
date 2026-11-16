@@ -2,6 +2,17 @@
 
 Every change to tokens or components gets a line here, newest first.
 
+## Unreleased
+
+### Tokens
+
+- Added: `Content/action-outlined`, `positive-outlined`, `negative-outlined`, `warning-outlined` and `info-outlined`, for text and icons in outlined badges and banners. Light uses the same primitive as `Content/{role}`. Dark uses the same primitive as `Border/{role}`, so the text matches its outline. **Not in Figma yet.**
+- Contrast: in Dark, outlined success (3.8:1), info (3.1:1), accent (4.1:1) and error (4.3:1) text is below 4.5:1. `npm run check` now reports these. ROADMAP item 6 suggests a fix.
+
+### Components
+
+- Badge, Banner: the outlined emphasis uses the new `Content/*-outlined` tokens. Neutral outlined badges are unchanged, because `Border/dark` is 2.1:1 in Dark and can't carry text.
+
 ## 0.1.0 · 2026-11-16
 
 First version, built from the Figma file Foundation (New).

@@ -76,5 +76,35 @@
     "--color-surface-disabled",
     "Disabled label (exempt)",
     3
+  ],
+  [
+    "--color-content-action-outlined",
+    "--color-surface-primary",
+    "Outlined accent text",
+    4.5
+  ],
+  [
+    "--color-content-positive-outlined",
+    "--color-surface-primary",
+    "Outlined success text",
+    4.5
+  ],
+  [
+    "--color-content-negative-outlined",
+    "--color-surface-primary",
+    "Outlined error text",
+    4.5
+  ],
+  [
+    "--color-content-warning-outlined",
+    "--color-surface-primary",
+    "Outlined warning text",
+    4.5
+  ],
+  [
+    "--color-content-info-outlined",
+    "--color-surface-primary",
+    "Outlined info text",
+    4.5
   ]
 ]
