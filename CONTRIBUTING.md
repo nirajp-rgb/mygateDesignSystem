@@ -4,6 +4,26 @@
 
 Use one branch per change, named by what it touches: `tokens/border-dark-fix`, `docs/banner-guidelines`, `component/stepper`.
 
+## Commit messages
+
+Write the message for someone reading `git log` in six months who did not see the conversation.
+
+```
+Area: what changed, in the imperative (max ~60 characters)
+
+Why the change was needed, what it affects, and anything a reviewer
+should check. Wrap at 72 characters. Name tokens the way Figma does
+(Content/positive-outlined) so designers can search for them.
+
+Not in Figma yet: Content/positive-outlined, Content/info-outlined
+```
+
+- **Area** is one of `Tokens`, `Docs`, `Chip` (or another component name), `Build`, `CI`.
+- The first line says what the commit does, not what you did: "Chip: add left and right icon slots", not "updated chip".
+- One logical change per commit. Token value changes and the `dist/` rebuild go in the same commit; unrelated docs fixes do not.
+- If Figma is not updated yet, end with a `Not in Figma yet:` line listing the tokens or components.
+- Breaking changes (a renamed or removed token, a changed component property) start the body with `BREAKING:`.
+
 ## Token changes
 
 1. Make the change in the docs Overview, then use **Copy tokens** and save the result to `exports/`. You can also edit `tokens/*.json` directly.

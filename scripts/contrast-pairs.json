@@ -76,5 +76,29 @@
     "--color-surface-disabled",
     "Disabled label (exempt)",
     3
+  ],
+  [
+    "--color-content-positive",
+    "--color-surface-positive-subtle",
+    "Success text",
+    4.5
+  ],
+  [
+    "--color-content-info",
+    "--color-surface-info-subtle",
+    "Info text",
+    4.5
+  ],
+  [
+    "--color-content-positive",
+    "--color-surface-primary",
+    "Success text on a card",
+    4.5
+  ],
+  [
+    "--color-content-info",
+    "--color-surface-primary",
+    "Info text on a card",
+    4.5
   ]
 ]

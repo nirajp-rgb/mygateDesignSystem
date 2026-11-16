@@ -2,6 +2,17 @@
 
 Every change to tokens or components gets a line here, newest first.
 
+## Unreleased
+
+### Tokens
+
+- Changed: Dark `Content/positive` → green/400, `Content/negative` → red/400 and `Content/info` → blue/400: the same primitives as `Border/positive`, `Border/negative` and `Border/info`. Outlined badges and banners now have one colour for text and outline. `Content/warning` already matched `Border/warning`.
+- Contrast: these Dark text colours are below 4.5:1 on `Surface/primary` (success 3.8:1, info 3.1:1) and on their subtle fills (success 3.3:1, info 3.4:1). Error passes. `npm run check` reports them.
+
+### Components
+
+- Chip: left and right icon slots. The left slot takes the check (shown when selected) or any icon, which the check replaces when the chip is selected. The right slot takes a dropdown caret or a clear icon. Figma properties are listed in the docs.
+
 ## 0.1.0 · 2026-11-16
 
 First version, built from the Figma file Foundation (New).
