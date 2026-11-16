@@ -1,0 +1,510 @@
+{
+  "spacing": {
+    "100": {
+      "$type": "dimension",
+      "$value": "{Dimension.4}",
+      "$description": "Icon-to-label gap, gap between stacked label and field"
+    },
+    "200": {
+      "$type": "dimension",
+      "$value": "{Dimension.8}",
+      "$description": "Gap inside controls, between chips, between buttons"
+    },
+    "300": {
+      "$type": "dimension",
+      "$value": "{Dimension.12}",
+      "$description": "List-row padding, gap between related items"
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": "{Dimension.16}",
+      "$description": "Screen side margins, card padding"
+    },
+    "500": {
+      "$type": "dimension",
+      "$value": "{Dimension.20}",
+      "$description": "Space between a heading and its content"
+    },
+    "600": {
+      "$type": "dimension",
+      "$value": "{Dimension.24}",
+      "$description": "Sheet padding, gap between groups on a screen"
+    },
+    "700": {
+      "$type": "dimension",
+      "$value": "{Dimension.32}",
+      "$description": "Between sections"
+    },
+    "800": {
+      "$type": "dimension",
+      "$value": "{Dimension.48}",
+      "$description": "Large breaks, top of empty states"
+    },
+    "900": {
+      "$type": "dimension",
+      "$value": "{Dimension.64}",
+      "$description": "Page-level breaks",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "note": "Dimension/64 exists; the spacing alias is missing in Figma."
+        }
+      }
+    }
+  },
+  "borderRadius": {
+    "100": {
+      "$type": "dimension",
+      "$value": "{Dimension.4}",
+      "$description": "Checkboxes, skeleton lines"
+    },
+    "200": {
+      "$type": "dimension",
+      "$value": "{Dimension.8}",
+      "$description": "Buttons, fields, banners, media in cards"
+    },
+    "300": {
+      "$type": "dimension",
+      "$value": "{Dimension.12}",
+      "$description": "Cards and lists"
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": "{Dimension.16}",
+      "$description": "Large media"
+    },
+    "500": {
+      "$type": "dimension",
+      "$value": "{Dimension.24}",
+      "$description": "Top corners of bottom sheets",
+      "$extensions": {
+        "mds": {
+          "status": "changed",
+          "note": "Variable is 24px; the Radius page in Figma says 500 = 20px and 600 = 24px. Align them."
+        }
+      }
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "{Dimension.9999}",
+      "$description": "Chips, badges, avatars, icon buttons, switches, segmented controls"
+    }
+  },
+  "sizing": {
+    "icon": {
+      "xsmall": {
+        "$type": "dimension",
+        "$value": "{Dimension.12}",
+        "$description": "Inline with 12px text"
+      },
+      "small": {
+        "$type": "dimension",
+        "$value": "{Dimension.16}",
+        "$description": "Inside small buttons, chips and fields"
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.24}",
+        "$description": "Default icon size"
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": "{Dimension.32}",
+        "$description": "Empty states and feature icons"
+      }
+    },
+    "button": {
+      "small": {
+        "$type": "dimension",
+        "$value": "{Dimension.32}",
+        "$description": "Small button height",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.40}",
+        "$description": "Default button height",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": "{Dimension.48}",
+        "$description": "Full-width CTA height on mobile",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "iconButton": {
+      "small": {
+        "$type": "dimension",
+        "$value": "{Dimension.32}",
+        "$description": "Small icon button, square",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.40}",
+        "$description": "Default icon button, square",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": "{Dimension.48}",
+        "$description": "Large icon button, square",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "input": {
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.48}",
+        "$description": "Text field height",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "chip": {
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.32}",
+        "$description": "Chip height",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "tab": {
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.40}",
+        "$description": "Tab height. Segmented tabs sit 4px inside their track.",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "avatar": {
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.40}",
+        "$description": "Avatar and list-item lead; skeleton circle",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "checkbox": {
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Dimension.20}",
+        "$description": "Checkbox and radio box",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "switch": {
+      "width": {
+        "$type": "dimension",
+        "$value": "{Dimension.40}",
+        "$description": "Switch track width",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      },
+      "height": {
+        "$type": "dimension",
+        "$value": "{Dimension.24}",
+        "$description": "Switch track height. The thumb is 4px smaller.",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "listItem": {
+      "minHeight": {
+        "$type": "dimension",
+        "$value": "{Dimension.56}",
+        "$description": "Minimum list-row height",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    },
+    "emptyState": {
+      "art": {
+        "$type": "dimension",
+        "$value": "{Dimension.64}",
+        "$description": "Empty-state illustration circle",
+        "$extensions": {
+          "mds": {
+            "status": "added"
+          }
+        }
+      }
+    }
+  },
+  "borderWidth": {
+    "default": {
+      "$type": "dimension",
+      "$value": "{Dimension.1}",
+      "$description": "Every outline and divider.",
+      "$extensions": {
+        "mds": {
+          "status": "added"
+        }
+      }
+    }
+  },
+  "elevation": {
+    "100": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "1px",
+        "blur": "4px",
+        "spread": "0px",
+        "color": "#0b161914"
+      },
+      "$description": "Switch thumb, selected segment",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "note": ""
+        }
+      }
+    },
+    "200": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "16px",
+        "spread": "0px",
+        "color": "#0b16191a"
+      },
+      "$description": "Elevated card",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "note": "Based on the Ds-subtle effect, without its grey glow."
+        }
+      }
+    },
+    "300": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "32px",
+        "spread": "0px",
+        "color": "#0b16192e"
+      },
+      "$description": "Bottom sheets and dialogs",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "note": ""
+        }
+      }
+    }
+  },
+  "typography": {
+    "title-screen": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "{Font Size.xl}",
+        "lineHeight": "30px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Once per screen: the page title in a large app bar.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Title Screen"
+        }
+      }
+    },
+    "title-section": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "22px",
+        "lineHeight": "28px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Sheet titles and section headings.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Title Section",
+          "note": "22px is not in the Font Size scale. Add it, or change this style."
+        }
+      }
+    },
+    "title-subsection": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "{Font Size.lg}",
+        "lineHeight": "24px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Card titles, small app bar title, empty-state title.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Title Subsection"
+        }
+      }
+    },
+    "body-large": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.regular}",
+        "fontSize": "{Font Size.md}",
+        "lineHeight": "24px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Input text, checkbox and switch labels.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Large",
+          "note": "Figma text style uses a 20px line height; the documentation page says 24px. Confirm."
+        }
+      }
+    },
+    "body-large-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "{Font Size.md}",
+        "lineHeight": "24px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Button labels, list-item titles.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Large Bold",
+          "note": "Figma text style uses a 20px line height; the documentation page says 24px. Confirm."
+        }
+      }
+    },
+    "body-default": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.regular}",
+        "fontSize": "{Font Size.sm}",
+        "lineHeight": "20px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Running text and descriptions. The base style.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Default"
+        }
+      }
+    },
+    "body-default-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "{Font Size.sm}",
+        "lineHeight": "20px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Small button labels, tab labels, banner titles.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Default Bold"
+        }
+      }
+    },
+    "body-small": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.regular}",
+        "fontSize": "{Font Size.xs}",
+        "lineHeight": "16px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Helper text, meta, timestamps, nav labels.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Small"
+        }
+      }
+    },
+    "body-small-bold": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{Font Family.default}",
+        "fontWeight": "{Font Weight.medium}",
+        "fontSize": "{Font Size.xs}",
+        "lineHeight": "16px",
+        "letterSpacing": "0px"
+      },
+      "$description": "Badges, field labels, selected nav label.",
+      "$extensions": {
+        "mds": {
+          "status": "added",
+          "figmaTextStyle": "New styles/Body Small Bold"
+        }
+      }
+    }
+  }
+}

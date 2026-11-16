@@ -1,0 +1,80 @@
+[
+  [
+    "--color-content-primary",
+    "--color-surface-primary",
+    "Body text",
+    4.5
+  ],
+  [
+    "--color-content-secondary",
+    "--color-surface-primary",
+    "Supporting text",
+    4.5
+  ],
+  [
+    "--color-content-tertiary",
+    "--color-surface-primary",
+    "Meta text",
+    4.5
+  ],
+  [
+    "--color-content-on-light",
+    "--color-surface-action-primary",
+    "CTA label",
+    4.5
+  ],
+  [
+    "--color-content-action",
+    "--color-surface-primary",
+    "Links, action text",
+    4.5
+  ],
+  [
+    "--color-content-action",
+    "--color-surface-action-secondary-subtle",
+    "Selected chip",
+    4.5
+  ],
+  [
+    "--color-border-action",
+    "--color-surface-primary",
+    "Checked controls (3:1)",
+    3
+  ],
+  [
+    "--color-border-dark",
+    "--color-surface-primary",
+    "Field borders (3:1)",
+    3
+  ],
+  [
+    "--color-content-negative",
+    "--color-surface-negative-subtle",
+    "Error text",
+    4.5
+  ],
+  [
+    "--color-content-warning",
+    "--color-surface-warning-subtle",
+    "Warning text",
+    4.5
+  ],
+  [
+    "--color-content-on-dark",
+    "--color-surface-negative-bold",
+    "Filled badge text",
+    4.5
+  ],
+  [
+    "--color-content-on-dark",
+    "--color-surface-nudge",
+    "Count badge text",
+    4.5
+  ],
+  [
+    "--color-content-disabled",
+    "--color-surface-disabled",
+    "Disabled label (exempt)",
+    3
+  ]
+]

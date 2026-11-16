@@ -1,0 +1,13 @@
+{
+  "name": "mygate-design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MDS: design tokens, component documentation and the token pipeline for the MyGate independent app.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "import": "node scripts/import.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

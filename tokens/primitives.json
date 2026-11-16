@@ -1,0 +1,340 @@
+{
+  "Color": {
+    "gray": {
+      "100": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#f4f6f6"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#dfe4e5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#b0b6b8"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#7b898c"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#475659"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#2c3c3f"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#162528"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#0b1619"
+      },
+      "a10": {
+        "$type": "color",
+        "$value": "#0b16191a",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": "See-through neutral fill and pressed state layer"
+          }
+        }
+      }
+    },
+    "red": {
+      "200": {
+        "$type": "color",
+        "$value": "#ffe5e5"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#ff3131"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#a41515"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#450101"
+      }
+    },
+    "green": {
+      "200": {
+        "$type": "color",
+        "$value": "#e2fae3"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#388e3c"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#115014"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#0c370e"
+      }
+    },
+    "orange": {
+      "200": {
+        "$type": "color",
+        "$value": "#ffedd1"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#f59700"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#b16e01"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#8f5900",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": "Warning text and fills that pass 4.5:1"
+          }
+        }
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#422900"
+      }
+    },
+    "blue": {
+      "200": {
+        "$type": "color",
+        "$value": "#d3e5fd"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#0b66ef"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#094cb0"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#031b3f"
+      }
+    },
+    "brand": {
+      "NoonYellow-400": {
+        "$type": "color",
+        "$value": "#ffdf00"
+      },
+      "ClearBlue-100": {
+        "$type": "color",
+        "$value": "#ebf8ff"
+      },
+      "ClearBlue-400": {
+        "$type": "color",
+        "$value": "#0288d1"
+      },
+      "ClearBlue-600": {
+        "$type": "color",
+        "$value": "#0270b4",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": "Action text that passes 4.5:1"
+          }
+        }
+      },
+      "ClearBlue-700": {
+        "$type": "color",
+        "$value": "#014c74"
+      },
+      "ClearBlue-a35": {
+        "$type": "color",
+        "$value": "#0288d159",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": "Focus ring"
+          }
+        }
+      },
+      "MidnightBlue": {
+        "$type": "color",
+        "$value": "#092d35"
+      },
+      "SnowyDay": {
+        "$type": "color",
+        "$value": "#e9e5de"
+      },
+      "Accent1": {
+        "$type": "color",
+        "$value": "#998c5c"
+      },
+      "Accent2": {
+        "$type": "color",
+        "$value": "#5c9969"
+      },
+      "Accent3": {
+        "$type": "color",
+        "$value": "#5c7499"
+      },
+      "Accent4": {
+        "$type": "color",
+        "$value": "#6c5c99"
+      },
+      "Accent5": {
+        "$type": "color",
+        "$value": "#995c5c"
+      }
+    },
+    "Purple": {
+      "200": {
+        "$type": "color",
+        "$value": "#e6e3ff"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#4f36a0"
+      }
+    },
+    "black": {
+      "a50": {
+        "$type": "color",
+        "$value": "#00000066"
+      }
+    },
+    "White": {
+      "a20": {
+        "$type": "color",
+        "$value": "#ffffff33"
+      },
+      "a40": {
+        "$type": "color",
+        "$value": "#ffffff66"
+      }
+    }
+  },
+  "Dimension": {
+    "1": {
+      "$type": "dimension",
+      "$value": "1px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "56": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "9999": {
+      "$type": "dimension",
+      "$value": "9999px"
+    }
+  },
+  "Font Size": {
+    "xxs": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "14px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "18px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "xxl": {
+      "$type": "dimension",
+      "$value": "32px"
+    }
+  },
+  "Font Weight": {
+    "regular": {
+      "$type": "fontWeight",
+      "$value": 400
+    },
+    "medium": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "mds": {
+          "status": "changed",
+          "note": "Value is 600, which is semibold. Proposed rename: semibold."
+        }
+      }
+    },
+    "bold": {
+      "$type": "fontWeight",
+      "$value": 700
+    }
+  },
+  "Font Family": {
+    "default": {
+      "$type": "fontFamily",
+      "$value": "Archivo"
+    }
+  }
+}

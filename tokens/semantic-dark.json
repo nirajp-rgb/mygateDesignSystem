@@ -1,0 +1,407 @@
+{
+  "Color": {
+    "Surface": {
+      "page": {
+        "$type": "color",
+        "$value": "{Color.gray.900}",
+        "$description": "Screen background when content sits straight on it, with no cards. Forms and full-bleed pages."
+      },
+      "page-strong": {
+        "$type": "color",
+        "$value": "{Color.gray.900}",
+        "$description": "Screen background behind cards and lists. The default page colour in the app."
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "{Color.gray.800}",
+        "$description": "The main container colour: cards, lists, sheets, app bar, bottom navigation, input fields."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{Color.gray.700}",
+        "$description": "A quiet fill inside a primary surface: filled cards, skeleton base, disabled-looking areas. Never on page-strong, where it disappears."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{Color.gray.600}",
+        "$description": "A stronger neutral fill: selected bottom-nav pill, neutral subtle badge, skeleton shimmer."
+      },
+      "neutral-subtle": {
+        "$type": "color",
+        "$value": "{Color.White.a20}",
+        "$description": "See-through neutral fill: tonal icon buttons, segmented-control tracks, and the pressed and hover state layer on every button. It darkens whatever is behind it, so it never merges with the page.",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": ""
+          }
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{Color.gray.700}",
+        "$description": "Fill for disabled inputs and buttons.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Dark was gray/600, the same as Content/disabled, so disabled labels vanished."
+          }
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{Color.gray.100}",
+        "$description": "Dark fill on a light screen: filled neutral badge, count badge, tooltips."
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "{Color.black.a50}",
+        "$description": "Scrim behind bottom sheets and dialogs.",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": ""
+          }
+        }
+      },
+      "action-primary": {
+        "$type": "color",
+        "$value": "{Color.brand.NoonYellow-400}",
+        "$description": "The CTA fill. Primary button and filled icon button only. Pressed adds the neutral-subtle state layer on top."
+      },
+      "action-secondary": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-400}",
+        "$description": "Fills of controls that are on: checked checkbox, switch track. Shapes only, never behind text."
+      },
+      "action-secondary-bold": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-700}",
+        "$description": "Blue fill that carries white text: filled accent badge. Follows the -subtle / -bold pattern of the status colours.",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": ""
+          }
+        }
+      },
+      "action-secondary-subtle": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-700}",
+        "$description": "Selected chip background, list-item leads, empty-state art."
+      },
+      "positive-subtle": {
+        "$type": "color",
+        "$value": "{Color.green.800}",
+        "$description": "Background of subtle success banners and badges."
+      },
+      "positive-bold": {
+        "$type": "color",
+        "$value": "{Color.green.600}",
+        "$description": "Filled success badges and banners and anything else that carries white text on the positive colour.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was the 400 shade, with a separate -strong token for white text. Merged into one: -bold is now the dark shade, so it always passes 4.5:1 with Content/onDark."
+          }
+        }
+      },
+      "negative-subtle": {
+        "$type": "color",
+        "$value": "{Color.red.800}",
+        "$description": "Background of subtle error banners and badges."
+      },
+      "negative-bold": {
+        "$type": "color",
+        "$value": "{Color.red.600}",
+        "$description": "Filled error badges and banners and anything else that carries white text on the negative colour.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was the 400 shade, with a separate -strong token for white text. Merged into one: -bold is now the dark shade, so it always passes 4.5:1 with Content/onDark."
+          }
+        }
+      },
+      "warning-subtle": {
+        "$type": "color",
+        "$value": "{Color.orange.800}",
+        "$description": "Background of subtle warning banners and badges."
+      },
+      "warning-bold": {
+        "$type": "color",
+        "$value": "{Color.orange.700}",
+        "$description": "Filled warning badges and banners and anything else that carries white text on the warning colour.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was the 400 shade, with a separate -strong token for white text. Merged into one: -bold is now the dark shade, so it always passes 4.5:1 with Content/onDark."
+          }
+        }
+      },
+      "info-subtle": {
+        "$type": "color",
+        "$value": "{Color.blue.800}",
+        "$description": "Background of subtle info banners and badges."
+      },
+      "info-bold": {
+        "$type": "color",
+        "$value": "{Color.blue.600}",
+        "$description": "Filled info badges and banners and anything else that carries white text on the info colour.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was the 400 shade, with a separate -strong token for white text. Merged into one: -bold is now the dark shade, so it always passes 4.5:1 with Content/onDark."
+          }
+        }
+      },
+      "nudge": {
+        "$type": "color",
+        "$value": "{Color.red.400}",
+        "$description": "The one colour for notification markers: count badges and unread dots, everywhere in the app."
+      }
+    },
+    "Content": {
+      "primary": {
+        "$type": "color",
+        "$value": "{Color.gray.300}",
+        "$description": "Headings, body text, primary icons."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{Color.gray.400}",
+        "$description": "Supporting text: subtitles, helper text, descriptions, unselected tabs and nav items."
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{Color.gray.500}",
+        "$description": "Timestamps and meta at 12px and up. 3.6:1 on white, so never for sentences people must read."
+      },
+      "placeholder": {
+        "$type": "color",
+        "$value": "{Color.gray.500}",
+        "$description": "Placeholder text inside input fields only."
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{Color.gray.500}",
+        "$description": "Text and icons on disabled controls, on Surface/disabled.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Dark was gray/800 in Semantic and gray/600 in Semantic-Dark: invisible on Surface/primary and on Surface/disabled."
+          }
+        }
+      },
+      "onContrast": {
+        "$type": "color",
+        "$value": "{Color.gray.800}",
+        "$description": "Text and icons on Surface/inverse."
+      },
+      "onDark": {
+        "$type": "color",
+        "$value": "{Color.gray.100}",
+        "$description": "Text on fills that stay dark in both modes: -bold status fills, action-secondary-bold, nudge."
+      },
+      "onLight": {
+        "$type": "color",
+        "$value": "{Color.gray.800}",
+        "$description": "Text on light fills that stay light in both modes: the CTA yellow."
+      },
+      "action": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-100}",
+        "$description": "Link text, link buttons, selected chip and tab labels.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Light was ClearBlue-400 (3.9:1 on white). Dark was ClearBlue-400, which disappears on the dark selected-chip tint (ClearBlue-700)."
+          }
+        }
+      },
+      "positive": {
+        "$type": "color",
+        "$value": "{Color.green.200}",
+        "$description": "Success text.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was green/400: 4.1:1 on white and 3.8:1 on dark."
+          }
+        }
+      },
+      "negative": {
+        "$type": "color",
+        "$value": "{Color.red.200}",
+        "$description": "Error text, field error messages.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Was red/400: 3.7:1 on white."
+          }
+        }
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{Color.orange.400}",
+        "$description": "Warning text.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Light was orange/600: 4.1:1 on white, 3.6:1 on warning-subtle."
+          }
+        }
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{Color.blue.200}",
+        "$description": "Info text.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": "Dark was blue/400: 3.1:1 on dark surfaces."
+          }
+        }
+      },
+      "rating-star": {
+        "$type": "color",
+        "$value": "{Color.orange.400}",
+        "$description": "Filled rating stars only."
+      }
+    },
+    "Border": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{Color.gray.700}",
+        "$description": "Dividers inside a card or list."
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{Color.gray.700}",
+        "$description": "Card outlines, list containers, app bar and bottom nav edges."
+      },
+      "dark": {
+        "$type": "color",
+        "$value": "{Color.gray.600}",
+        "$description": "Input fields, secondary buttons, unchecked checkboxes and radios. 3:1 on white, so controls stay visible."
+      },
+      "action": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-400}",
+        "$description": "Focused field, checked checkbox and radio, selected chip, active tab underline."
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-a35}",
+        "$description": "The 3px keyboard focus ring on every interactive element.",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": ""
+          }
+        }
+      },
+      "positive": {
+        "$type": "color",
+        "$value": "{Color.green.400}",
+        "$description": "Outlined success banners and badges."
+      },
+      "negative": {
+        "$type": "color",
+        "$value": "{Color.red.400}",
+        "$description": "Field in error, outlined error banners and badges."
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{Color.orange.400}",
+        "$description": "Outlined warning banners and badges."
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{Color.blue.400}",
+        "$description": "Outlined info banners and badges."
+      }
+    },
+    "Accent": {
+      "primary": {
+        "$type": "color",
+        "$value": "{Color.brand.NoonYellow-400}",
+        "$description": "Same as Surface/action-primary. Use that instead.",
+        "$extensions": {
+          "mds": {
+            "status": "deprecate",
+            "note": ""
+          }
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-400}",
+        "$description": "Same as Surface/action-secondary. Use that instead.",
+        "$extensions": {
+          "mds": {
+            "status": "deprecate",
+            "note": ""
+          }
+        }
+      },
+      "secondary-subtle": {
+        "$type": "color",
+        "$value": "{Color.brand.ClearBlue-100}",
+        "$description": "Same as Surface/action-secondary-subtle, but without a dark mode. Use that instead.",
+        "$extensions": {
+          "mds": {
+            "status": "deprecate",
+            "note": ""
+          }
+        }
+      },
+      "expressive1": {
+        "$type": "color",
+        "$value": "{Color.brand.Accent1}",
+        "$description": "Illustration and category colour. Never for controls or text."
+      },
+      "expressive2": {
+        "$type": "color",
+        "$value": "{Color.brand.Accent2}",
+        "$description": "Illustration and category colour."
+      },
+      "expressive3": {
+        "$type": "color",
+        "$value": "{Color.brand.Accent3}",
+        "$description": "Illustration and category colour."
+      },
+      "expressive4": {
+        "$type": "color",
+        "$value": "{Color.brand.Accent4}",
+        "$description": "Exists only in the Semantic-Dark collection today. Add it to Semantic.",
+        "$extensions": {
+          "mds": {
+            "status": "added",
+            "note": ""
+          }
+        }
+      },
+      "accent5": {
+        "$type": "color",
+        "$value": "{Color.brand.Accent5}",
+        "$description": "Rename to expressive5 to match the others.",
+        "$extensions": {
+          "mds": {
+            "status": "changed",
+            "note": ""
+          }
+        }
+      },
+      "PrivateInvite": {
+        "$type": "color",
+        "$value": "{Color.Purple.400}",
+        "$description": "Private-invite feature colour. Feature-specific: consider a feature collection."
+      },
+      "PrivateInvite-subtle": {
+        "$type": "color",
+        "$value": "{Color.Purple.200}",
+        "$description": "Private-invite tint."
+      }
+    }
+  }
+}
