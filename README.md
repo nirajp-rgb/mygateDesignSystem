@@ -34,7 +34,7 @@ npm run check   # validate: every reference resolves, no name clashes, contrast 
 npm run build   # write dist/
 ```
 
-To view the docs, open `docs/index.html` in a browser.
+To view the docs, open `docs/index.html` in a browser, or go to the hosted site at https://nirajp-rgb.github.io/mygateDesignSystem/. The site is published by `.github/workflows/pages.yml` on every push to `main`. The built tokens are hosted too, at `/dist/tokens.css`.
 
 ## Making a change
 
