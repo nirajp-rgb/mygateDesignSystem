@@ -805,10 +805,10 @@ $('#ds-css').textContent = BASE_CSS + Object.values(CSS).join('\n');
 /* ================= Component definitions ================= */
 const W = 360, WW = 744;
 const sel = (a, b) => a === b;
-const btnHTML = (p) => {
-  const lead = p.icon === 'leading' ? icon('plus') : '';
-  const spin = p.state === 'loading' ? '<span class="ds-spinner" aria-hidden="true"></span>' : '';
-  return `<button class="ds-btn ds-btn--${p.variant} ds-btn--${p.size}"${p.state==='disabled'?' disabled':''}${p.state==='loading'?' aria-busy="true"':''}>${spin || lead}<span>${esc(p.label)}</span></button>`;
+const btnHTML = p => {
+  const spin = p.loading ? '<span class="ds-spinner" aria-hidden="true"></span>' : '';
+  const lead = p.leadingIcon ? icon('plus') : '';
+  return `<button class="ds-btn ds-btn--${p.variant} ds-btn--${p.size}"${p.disabled ? ' disabled' : ''}${p.loading ? ' aria-busy="true"' : ''}>${spin || lead}<span>${esc(p.label)}</span></button>`;
 };
 const fieldHTML = (p, id) => {
   const err = p.state === 'error', dis = p.state === 'disabled';
@@ -830,15 +830,18 @@ const liHTML = (p, k = 0) => {
   }[p.trail];
   return `<li class="ds-li">${lead}<div class="ds-li__text"><span class="ds-li__title">${esc(p.title)}</span>${p.sub?`<span class="ds-li__sub">${esc(p.sub)}</span>`:''}</div>${trail?`<div class="ds-li__trail">${trail}</div>`:''}</li>`;
 };
-const CHIP_LEAD = { icon:'calendar' }, CHIP_TRAIL = { dropdown:'caret-down', clear:'close' };
 const slotIcon = (n, cls) => icon(n).replace('class="ds-icon"', `class="ds-icon ${cls}"`);
 const chipHTML = p => {
-  const lead = p.left === 'icon', trail = p.right && p.right !== 'none';
-  const cls = 'ds-chip' + (lead ? ' ds-chip--lead' : '') + (trail ? ' ds-chip--trail' : '');
-  const left = (p.left !== 'none' ? slotIcon('check', 'ds-chip__check') : '') + (lead ? slotIcon(CHIP_LEAD.icon, 'ds-chip__lead') : '');
-  const right = trail ? slotIcon(CHIP_TRAIL[p.right], p.right === 'clear' ? 'ds-chip__clear' : 'ds-chip__trail') : '';
-  return `<button class="${cls}" aria-pressed="${p.selected === 'on'}"${p.right === 'dropdown' ? ' aria-haspopup="dialog"' : ''}>${left}${esc(p.label)}${right}</button>`;
+  const trail = p.trailingIcon && p.trailingIcon !== 'none';
+  const cls = 'ds-chip' + (p.leadingIcon ? ' ds-chip--lead' : '') + (trail ? ' ds-chip--trail' : '');
+  const check = slotIcon('check', 'ds-chip__check');
+  const lead = p.leadingIcon ? slotIcon('calendar', 'ds-chip__lead') : '';
+  const trailHTML = trail ? slotIcon(p.trailingIcon, p.trailingIcon === 'close' ? 'ds-chip__clear' : 'ds-chip__trail') : '';
+  return `<button class="${cls}" aria-pressed="${!!p.selected}"${p.trailingIcon === 'caret-down' ? ' aria-haspopup="dialog"' : ''}>${check}${lead}${esc(p.label)}${trailHTML}</button>`;
 };
+const badgeHTML = p => `<span class="ds-badge ds-badge--${p.tone} ds-badge--${p.variant}">${esc(p.label)}</span>`;
+const countBadgeHTML = n => `<span class="ds-badge ds-badge--count" aria-label="${n > 99 ? 'More than 99' : n} unread">${n > 99 ? '99+' : n}</span>`;
+const dotBadgeHTML = () => '<span class="ds-badge ds-badge--dot" aria-label="New"></span>';
 const initials = s => s.split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0].toUpperCase()).join('');
 const TABS = [['Upcoming','calendar'],['Past','check'],['Cancelled','close'],['Drafts','inbox']];
 const tabsHTML = p => `<div class="ds-tabs ds-tabs--${p.style}" role="tablist" aria-label="Visits">${TABS.slice(0, +p.count).map(([t, ic], i) =>
@@ -855,7 +858,7 @@ const appbarHTML = p => {
     : `<header class="ds-appbar">${back}<h1 class="ds-appbar__title">${esc(p.title)}</h1>${actions}</header>`;
 };
 const BANNER_ICON = { info:'info', success:'check-circle', warning:'warning', danger:'alert' };
-const bannerHTML = p => `<div class="ds-banner ds-banner--${p.tone}${p.emphasis && p.emphasis !== 'subtle' ? ' ds-banner--' + p.emphasis : ''}" role="${p.tone==='danger'?'alert':'status'}">${icon(BANNER_ICON[p.tone])}<div class="ds-banner__text"><p class="ds-banner__title">${esc(p.title)}</p><p class="ds-banner__body">${esc(p.body)}</p>${p.action==='on'?`<button class="ds-banner__action">${esc(p.actionLabel || 'View details')}</button>`:''}</div></div>`;
+const bannerHTML = p => `<div class="ds-banner ds-banner--${p.tone}${p.variant && p.variant !== 'subtle' ? ' ds-banner--' + p.variant : ''}" role="${p.tone==='danger'?'alert':'status'}">${icon(BANNER_ICON[p.tone])}<div class="ds-banner__text"><p class="ds-banner__title">${esc(p.title)}</p><p class="ds-banner__body">${esc(p.description)}</p>${p.actionLabel ? `<button class="ds-banner__action">${esc(p.actionLabel)}</button>` : ''}</div></div>`;
 const cardHTML = p => `<article class="ds-card ds-card--${p.variant}">${p.media==='on'?'<div class="ds-card__media" aria-hidden="true"></div>':''}<div class="ds-card__head"><span class="ds-badge ds-badge--accent">Notice</span><span class="ds-card__meta">2h ago</span></div><h3 class="ds-card__title">${esc(p.title)}</h3><p class="ds-card__body">${esc(p.body)}</p>${p.actions==='on'?'<div class="ds-card__actions"><button class="ds-btn ds-btn--ghost ds-btn--sm">Dismiss</button><button class="ds-btn ds-btn--primary ds-btn--sm">View details</button></div>':''}</article>`;
 const skelHTML = p => {
   const line = w => `<span class="ds-skel ds-skel--line" style="width:${w}%"></span>`;
@@ -890,12 +893,18 @@ const COMPONENTS = [
   guidelines:['One primary button per screen or sheet. If two actions feel equal, one of them is secondary.','Pair the CTA only with neutral buttons (secondary or ghost), so yellow stays the only coloured action.','On mobile, full-width CTAs use size large (48px). Inline buttons use medium.','Order: primary on the right in a row, on top in a stack.','Labels start with a verb and say what happens: "Pay ₹3,450", not "Continue".'],
   use:['The main action on a screen or sheet.','Supporting actions next to it.','Standalone text actions, using the link type.'],
   avoid:['Opening another page from running text. Use an inline link.','Turning a setting on or off. Use a switch.','Labels longer than about three words.'],
-  anatomy:[['Container','Fill and border show the type.'],['Label','Body Large Bold; Body Default Bold at small size.'],['Leading icon','Optional, 16px. Only when it makes the action faster to recognise.'],['Spinner','Replaces the icon while the action runs.']],
+  anatomy:[['Container','Fill and border show the type.'],['Label','Body Large Bold; Body Default Bold at small size.'],['Leading icon','Optional, 16px. Only when it makes the action faster to recognise.'],['Spinner','Replaces the icon while loading.']],
   a11y:['Always a real <button>.','Large and medium sizes meet the touch target with surrounding spacing; small needs at least 8px clear space around it.','While loading, keep the label and set aria-busy.','Prefer an enabled button that explains what is missing over a disabled one.'],
-  props:[{name:'variant',options:['primary','secondary','ghost','link','danger'],desc:'The type. Sets fill, border and text colour.'},{name:'size',options:['sm','md','lg'],def:'md',desc:'Height from sizing/control: small 32, medium 40, large 48.'},{name:'state',options:['default','disabled','loading'],desc:'Disabled uses Surface/disabled and Content/disabled. Pressed lays Surface/neutral-subtle over the fill. Loading shows a spinner and blocks repeat taps.'},{name:'icon',options:['none','leading'],desc:'Optional leading icon.'},{name:'label',text:true,def:'Pay now'}],
+  props:[
+    {name:'variant',options:['primary','secondary','ghost','link','danger'],desc:'The type. Sets fill, border and text colour.',figma:'Variant'},
+    {name:'size',options:['sm','md','lg'],def:'md',desc:'Height from sizing/control: small 32, medium 40, large 48.',figma:'Size'},
+    {name:'disabled',bool:true,options:[false,true],def:false,desc:'Uses Surface/disabled and Content/disabled. Cannot be tapped.',figma:'Disabled (boolean)'},
+    {name:'loading',bool:true,options:[false,true],def:false,desc:'Shows a spinner in place of the icon and blocks repeat taps.',figma:'Loading (boolean)'},
+    {name:'leadingIcon',bool:true,options:[false,true],def:false,desc:'Shows a plus icon before the label. Code takes an icon name.',figma:'Leading icon (boolean) + instance swap "Leading icon swap"'},
+    {name:'label',text:true,def:'Pay now'}],
   render:p => btnHTML(p),
-  showcase:() => `<div class="row">${btnHTML({variant:'primary',size:'md',state:'default',label:'Pay now'})}${btnHTML({variant:'secondary',size:'md',state:'default',label:'View bill'})}${btnHTML({variant:'ghost',size:'md',state:'default',label:'Later'})}</div><div class="row">${btnHTML({variant:'link',size:'md',state:'default',label:'Payment history'})}${btnHTML({variant:'danger',size:'sm',state:'default',label:'Remove'})}${btnHTML({variant:'primary',size:'sm',state:'loading',label:'Paying'})}${btnHTML({variant:'secondary',size:'sm',state:'disabled',label:'Disabled'})}</div>`,
-  schema:p => ({ type:'button', variant:p.variant, size:{sm:'small',md:'medium',lg:'large'}[p.size], label:p.label, icon:p.icon==='leading'?'plus':null, state:p.state, action:{ type:'navigate', to:'app://payments/dues' } }) },
+  showcase:() => `<div class="row">${btnHTML({variant:'primary',size:'md',label:'Pay now'})}${btnHTML({variant:'secondary',size:'md',label:'View bill'})}${btnHTML({variant:'ghost',size:'md',label:'Later'})}</div><div class="row">${btnHTML({variant:'link',size:'md',label:'Payment history'})}${btnHTML({variant:'danger',size:'sm',label:'Remove'})}${btnHTML({variant:'primary',size:'sm',loading:true,label:'Paying'})}${btnHTML({variant:'secondary',size:'sm',disabled:true,label:'Disabled'})}</div>`,
+  schema:p => ({ type:'button', variant:p.variant, size:{sm:'small',md:'medium',lg:'large'}[p.size], label:p.label, leadingIcon:p.leadingIcon?'plus':null, disabled:p.disabled, loading:p.loading, action:{ type:'navigate', to:'app://payments/dues' } }) },
 
 { id:'icon-button', name:'Icon button', group:'actions', w:W,
   summary:'An action shown only as an icon, for tight spaces where the icon is widely understood.',
@@ -933,21 +942,25 @@ const COMPONENTS = [
 { id:'chip', name:'Chip', group:'inputs', w:W,
   summary:'A compact toggle for filtering a list or tagging content, with an optional icon on each side.',
   types:[
-    { name:'Selected', p:{selected:'on'}, desc:'Blue tint, blue border and a check, so the state does not rely on colour alone.' },
-    { name:'Unselected', p:{selected:'off',label:'Electrician'}, desc:'White with a grey border.' },
-    { name:'Left icon', p:{selected:'off',left:'icon',label:'Today'}, desc:'An icon before the label that helps people scan. It is replaced by the check when the chip is selected.' },
-    { name:'Dropdown', p:{selected:'off',left:'none',right:'dropdown',label:'Tower'}, desc:'A caret after the label. Tapping opens a bottom sheet of options; the label then shows the choice, like "Tower B", and the chip shows as selected.' },
-    { name:'Clearable', p:{selected:'on',right:'clear',label:'Plumber'}, desc:'A close icon on a selected chip. Tapping the chip clears the filter. The icon shows only while the chip is selected.' }],
-  guidelines:['Put filter chips in one horizontally scrolling row under the search field or app bar.','"All" clears the other filters in its group.','Keep labels to one or two words. Add a count in brackets only if it helps choose.','Chips filter what is already on the screen. They never navigate.','Use at most one icon on each side. In one row of chips, either every chip has a left icon or none does.','The whole chip is one tap target. Icons in the slots are never separate buttons.'],
+    { name:'Selected', p:{selected:true}, desc:'Blue tint, blue border and a check, so the state does not rely on colour alone.' },
+    { name:'Unselected', p:{selected:false,label:'Electrician'}, desc:'White with a grey border.' },
+    { name:'Leading icon', p:{selected:false,leadingIcon:true,label:'Today'}, desc:'A calendar icon before the label. The check replaces it when the chip is selected.' },
+    { name:'Dropdown', p:{selected:false,trailingIcon:'caret-down',label:'Tower'}, desc:'A caret after the label. Tapping opens a bottom sheet of options. Once a choice is made, the label shows it, like "Tower B", and the chip is selected.' },
+    { name:'Clearable', p:{selected:true,trailingIcon:'close',label:'Plumber'}, desc:'A close icon on a selected chip. Tapping the chip clears the filter. The icon shows only while the chip is selected.' }],
+  guidelines:['Put filter chips in one horizontally scrolling row under the search field or app bar.','"All" clears the other filters in its group.','Keep labels to one or two words. Add a count in brackets only if it helps choose.','Chips filter what is already on the screen. They never navigate.','Use at most one icon on each side. In one row of chips, either every chip has a leading icon or none does.','The whole chip is one tap target. Icons in the slots are never separate buttons.'],
   use:['Filtering a list, one chip per category.','A filter with many values, like a tower or a date range: use the dropdown chip.','Tagging and quick replies.'],
-  avoid:['Switching between views. Use tabs or a segmented control.','Main actions. Use a button.','Icons that only decorate. A left icon has to help people tell the chips apart.'],
-  anatomy:[['Container','Pill. Surface/action-secondary-subtle and Border/action when selected. Side padding is spacing/300, or spacing/200 on a side that has an icon.'],['Left icon slot','Optional, 16px (sizing/icon/small). The check when selected, or any icon. A custom icon is swapped for the check when selected.'],['Label','Body Default; bold when selected.'],['Right icon slot','Optional, 16px. Caret for a dropdown chip, close for a clearable chip.']],
-  a11y:['A <button> with aria-pressed.','The check icon carries the state for people who cannot see the colour change.','A dropdown chip adds aria-haspopup="dialog" and its label names the current choice.','Slot icons are aria-hidden; the label says everything.'],
-  props:[{name:'selected',options:['on','off'],desc:'Toggled by tapping. Figma: variant "Selected".'},{name:'left',options:['check','icon','none'],desc:'Left icon slot. check: the check, shown only when selected. icon: any icon, swapped for the check when selected. Figma: boolean "Left icon" plus instance swap "Left icon swap".'},{name:'right',options:['none','dropdown','clear'],desc:'Right icon slot. Figma: boolean "Right icon" plus instance swap "Right icon swap".'},{name:'label',text:true,def:'Plumber'}],
+  avoid:['Switching between views. Use tabs or a segmented control.','Main actions. Use a button.','Icons that only decorate. A leading icon has to help people tell the chips apart.'],
+  anatomy:[['Container','Pill. Surface/action-secondary-subtle and Border/action when selected. Side padding is spacing/300, or spacing/200 on a side with an icon.'],['Leading icon','Optional, 16px. The check replaces it when selected.'],['Label','Body Default; bold when selected.'],['Trailing icon','Optional, 16px. Caret for a dropdown, close for a clearable chip.']],
+  a11y:['A <button> with aria-pressed.','The check icon carries the state for people who cannot see the colour change.','A dropdown chip adds aria-haspopup="dialog" and its label names the current choice.','Icons in the slots are aria-hidden; the label says everything.'],
+  props:[
+    {name:'selected',bool:true,options:[false,true],def:true,desc:'Blue tint, blue border and bold label. The check shows when selected.',figma:'Selected (variant)'},
+    {name:'leadingIcon',bool:true,options:[false,true],def:false,desc:'Calendar icon before the label. Replaced by the check when selected.',figma:'Leading icon (boolean) + instance swap "Leading icon swap"'},
+    {name:'trailingIcon',options:['none','caret-down','close'],def:'none',desc:'caret-down opens a dropdown. close clears the chip and shows only when selected.',figma:'Trailing icon (boolean) + instance swap "Trailing icon swap"'},
+    {name:'label',text:true,def:'Plumber'}],
   render:p => chipHTML(p),
-  showcase:() => `<div class="row">${['All','Plumber','Electrician','Carpenter','Painter'].map((t, i) => chipHTML({ selected:i===0||i===2 ? 'on' : 'off', left:'check', right:'none', label:t })).join('')}</div>
-<div class="row">${chipHTML({ selected:'off', left:'icon', right:'none', label:'Today' })}${chipHTML({ selected:'off', left:'none', right:'dropdown', label:'Tower' })}${chipHTML({ selected:'on', left:'check', right:'dropdown', label:'Tower B' })}${chipHTML({ selected:'on', left:'none', right:'clear', label:'Plumber' })}</div><p class="cap">Tap a chip to toggle it. Last four: left icon, dropdown, dropdown with a choice, clearable.</p>`,
-  schema:p => ({ type:'chip', label:p.label, selected:p.selected==='on', leftIcon:p.left==='icon' ? 'calendar-blank' : p.left==='check' ? 'check' : null, rightIcon:p.right==='dropdown' ? 'caret-down' : p.right==='clear' ? 'x' : null, action:p.right==='dropdown' ? { type:'open_sheet', sheet:'filter_options', key:'tower' } : { type:'filter', key:'service', value:p.label.toLowerCase() } }) },
+  showcase:() => `<div class="row">${['All','Plumber','Electrician','Carpenter','Painter'].map((t, i) => chipHTML({ selected:i===0||i===2, label:t })).join('')}</div>
+<div class="row">${chipHTML({ selected:false, leadingIcon:true, label:'Today' })}${chipHTML({ selected:false, trailingIcon:'caret-down', label:'Tower' })}${chipHTML({ selected:true, trailingIcon:'caret-down', label:'Tower B' })}${chipHTML({ selected:true, trailingIcon:'close', label:'Plumber' })}</div><p class="cap">Tap a chip to toggle it. Last four: leading icon, dropdown, dropdown with a choice, clearable.</p>`,
+  schema:p => ({ type:'chip', label:p.label, selected:p.selected, leadingIcon:p.leadingIcon?'calendar-blank':null, trailingIcon:{ 'caret-down':'caret-down', close:'x', none:null }[p.trailingIcon], action:p.trailingIcon==='caret-down' ? { type:'open_sheet', sheet:'filter_options', key:'tower' } : { type:'filter', key:'service', value:p.label.toLowerCase() } }) },
 
 { id:'checkbox', name:'Checkbox', group:'inputs', w:W,
   summary:'Turns an option on or off, when several options can be chosen independently.',
@@ -1048,40 +1061,46 @@ const COMPONENTS = [
 { id:'banner', name:'Banner', group:'feedback', w:WW,
   summary:'An inline message about the state of something on this screen. It stays until the situation changes.',
   types:[
-    { name:'Subtle', p:{emphasis:'subtle',tone:'info',title:'Lift maintenance on Sunday',body:'Tower B lifts are off from 9 AM to 1 PM.'}, desc:'Default. Tinted background. Most messages.' },
-    { name:'Outlined', p:{emphasis:'outlined'}, desc:'White with a coloured border. Inside cards or on tinted backgrounds.' },
-    { name:'Filled', p:{emphasis:'filled',tone:'danger',title:'Couldn\'t load visitors',body:'Check your connection and try again.'}, desc:'Strong fill with white text. Only for urgent problems that affect the whole screen.' }],
+    { name:'Subtle', p:{variant:'subtle',tone:'info',title:'Lift maintenance on Sunday',description:'Tower B lifts are off from 9 AM to 1 PM.',actionLabel:'View schedule'}, desc:'Default. Tinted background. Most messages.' },
+    { name:'Outlined', p:{variant:'outlined'}, desc:'White with a coloured border. Inside cards or on tinted backgrounds.' },
+    { name:'Filled', p:{variant:'filled',tone:'danger',title:'Couldn\'t load visitors',description:'Check your connection and try again.',actionLabel:'Try again'}, desc:'Strong fill with white text. Only for urgent problems that affect the whole screen.' }],
   guidelines:['Tones: info for neutral news, success for completed actions, warning for something that needs attention soon, danger for failures.','Place it at the top of the content it is about, not floating.','One banner per screen. If there are more, show the most important.','The action is a short text link that resolves the situation: "Pay now", "Try again".'],
   use:['Information that matters until it is resolved, like dues or an outage.','The result of an action, shown where it happened, instead of a toast.'],
   avoid:['Problems with one field. Use the field\'s error text.','Marketing. Use a card.'],
-  anatomy:[['Icon','Matches the tone: info, check-circle, warning, warning-circle.'],['Title','Body Default Bold.'],['Body','Body Small.'],['Action','Optional text action.']],
+  anatomy:[['Icon','Matches the tone: info, check-circle, warning, warning-circle.'],['Title','Body Default Bold.'],['Description','Body Small.'],['Action','Optional text action.']],
   a11y:['role="status" for info and success; role="alert" only for urgent problems.','Tone is carried by the icon and words, not colour alone.'],
-  props:[{name:'tone',options:['info','success','warning','danger'],def:'warning',desc:'Meaning of the message.'},{name:'emphasis',options:['subtle','outlined','filled'],desc:'How loud it is.'},{name:'action',options:['on','off'],desc:'Text action.'},{name:'title',text:true,def:'Maintenance due in 3 days'},{name:'body',text:true,def:'₹3,450 for November. Pay before the 10th to avoid a late fee.'}],
-  render:p => bannerHTML({...p, actionLabel:'Pay now'}),
-  showcase:() => `<div class="grid2">${bannerHTML({tone:'info',action:'on',actionLabel:'View schedule',title:'Lift maintenance on Sunday',body:'Tower B lifts are off from 9 AM to 1 PM.'})}${bannerHTML({tone:'success',action:'off',title:'Payment received',body:'₹3,450 for November. Receipt sent to your email.'})}${bannerHTML({tone:'warning',emphasis:'outlined',action:'on',actionLabel:'Pay now',title:'Maintenance due in 3 days',body:'Pay before the 10th to avoid a late fee.'})}${bannerHTML({tone:'danger',emphasis:'filled',action:'on',actionLabel:'Try again',title:'Couldn\'t load visitors',body:'Check your connection and try again.'})}</div><p class="cap">subtle · subtle · outlined · filled</p>`,
-  schema:p => ({ type:'banner', tone:p.tone, emphasis:p.emphasis, title:p.title, body:p.body, action:p.action==='on'?{ label:'Pay now', action:{ type:'navigate', to:'app://payments/dues' } }:null }) },
+  props:[
+    {name:'tone',options:['info','success','warning','danger'],def:'warning',desc:'Meaning of the message.',figma:'Tone (variant)'},
+    {name:'variant',options:['subtle','outlined','filled'],desc:'How loud it is.',figma:'Variant'},
+    {name:'title',text:true,def:'Maintenance due in 3 days'},
+    {name:'description',text:true,def:'₹3,450 for November. Pay before the 10th to avoid a late fee.'},
+    {name:'actionLabel',text:true,def:'Pay now',desc:'Text action. Clear the field to hide it.',figma:'Action (boolean) + text'}],
+  render:p => bannerHTML(p),
+  showcase:() => `<div class="grid2">${bannerHTML({tone:'info',variant:'subtle',actionLabel:'View schedule',title:'Lift maintenance on Sunday',description:'Tower B lifts are off from 9 AM to 1 PM.'})}${bannerHTML({tone:'success',variant:'subtle',actionLabel:'',title:'Payment received',description:'₹3,450 for November. Receipt sent to your email.'})}${bannerHTML({tone:'warning',variant:'outlined',actionLabel:'Pay now',title:'Maintenance due in 3 days',description:'Pay before the 10th to avoid a late fee.'})}${bannerHTML({tone:'danger',variant:'filled',actionLabel:'Try again',title:'Couldn\'t load visitors',description:'Check your connection and try again.'})}</div><p class="cap">subtle · subtle · outlined · filled</p>`,
+  schema:p => ({ type:'banner', tone:p.tone, variant:p.variant, title:p.title, description:p.description, action:p.actionLabel?{ label:p.actionLabel, action:{ type:'navigate', to:'app://payments/dues' } }:null }) },
 
 { id:'badge', name:'Badge', group:'feedback', w:WW,
   summary:'A small label that shows status, or a count of new items.',
   types:[
-    { name:'Subtle', p:{emphasis:'subtle'}, desc:'Default. Tinted. Status in lists and cards.' },
-    { name:'Outlined', p:{emphasis:'outlined'}, desc:'Border only. On images or tinted backgrounds.' },
-    { name:'Filled', p:{emphasis:'filled',tone:'danger',label:'Overdue'}, desc:'Strong fill, white text. Only for the status people must see first.' },
-    { name:'Count', p:{type:'count'}, desc:'A number on navigation or tabs, always Surface/nudge. Shows 99+ above 99.' },
-    { name:'Dot', p:{type:'dot'}, desc:'Something new, without a number. Surface/nudge.' }],
-  guidelines:['Status words are short and consistent across the app: Inside, Left, Paid, Due soon, Overdue.','Tones: neutral for past or inactive, accent for informational tags, success, warning, danger, info.','At most one filled badge in a view.','Count and dot badges have one colour, Surface/nudge, everywhere. Emphasis and tone apply to label badges only.'],
+    { name:'Subtle', p:{variant:'subtle'}, desc:'Default. Tinted. Status in lists and cards.' },
+    { name:'Outlined', p:{variant:'outlined'}, desc:'Border only. On images or tinted backgrounds.' },
+    { name:'Filled', p:{variant:'filled',tone:'danger',label:'Overdue'}, desc:'Strong fill, white text. Only for the status people must see first.' },
+    { name:'Count', render:() => countBadgeHTML(3), desc:'A number on navigation or tabs, always Surface/nudge. Shows 99+ above 99. Separate component: CountBadge.' },
+    { name:'Dot', render:() => dotBadgeHTML(), desc:'Something new, without a number. Surface/nudge. Separate component: DotBadge.' }],
+  guidelines:['Status words are short and consistent across the app: Inside, Left, Paid, Due soon, Overdue.','Tones: neutral for past or inactive, accent for informational tags, success, warning, danger, info.','At most one filled badge in a view.','Count and dot badges have one colour, Surface/nudge, everywhere. Variant and tone apply to label badges only.'],
   use:['Status on a row or card.','Unread counts and new-item dots.'],
   avoid:['Anything people should tap. Use a chip.','More than two words.'],
   anatomy:[['Label badge','Subtle, outlined or filled.'],['Count badge','A number on Surface/nudge.'],['Dot','8px, Surface/nudge.']],
   a11y:['Count and dot badges need an aria-label, like "3 unread".','Filled label badges use the -bold fills, which pass 4.5:1 with white text.'],
-  props:[{name:'type',options:['label','count','dot'],desc:'What it shows.'},{name:'emphasis',options:['subtle','outlined','filled'],desc:'How loud it is. Label badges only.'},{name:'tone',options:['neutral','accent','success','warning','danger','info'],def:'success',desc:'Meaning. Label badges only.'},{name:'label',text:true,def:'Inside'}],
-  render:p => p.type === 'count' ? `<span class="ds-badge ds-badge--count" aria-label="3 unread">3</span>`
-    : p.type === 'dot' ? '<span class="ds-badge ds-badge--dot" aria-label="New"></span>'
-    : `<span class="ds-badge ds-badge--${p.tone} ds-badge--${p.emphasis}">${esc(p.label)}</span>`,
+  props:[
+    {name:'tone',options:['neutral','accent','success','warning','danger','info'],def:'success',desc:'Meaning.',figma:'Tone (variant)'},
+    {name:'variant',options:['subtle','outlined','filled'],desc:'How loud it is.',figma:'Variant'},
+    {name:'label',text:true,def:'Inside'}],
+  render:p => badgeHTML(p),
   showcase:() => { const tones = [['neutral','Left'],['accent','Notice'],['success','Inside'],['warning','Due soon'],['danger','Overdue'],['info','New']];
-    return ['subtle','outlined','filled'].map(e => `<div class="badge-row"><span class="cap">${e}</span><div class="row" style="gap:8px">${tones.map(([t, l]) => `<span class="ds-badge ds-badge--${t} ds-badge--${e}">${l}</span>`).join('')}</div></div>`).join('')
-      + `<div class="badge-row"><span class="cap">count, dot</span><div class="row" style="gap:8px"><span class="ds-badge ds-badge--count" aria-label="3 unread">3</span><span class="ds-badge ds-badge--count" aria-label="12 unread">12</span><span class="ds-badge ds-badge--count" aria-label="More than 99 unread">99+</span><span class="ds-badge ds-badge--dot" aria-label="New"></span></div></div>`; },
-  schema:p => ({ type:'badge', variant:p.type, emphasis:p.type==='label'?p.emphasis:null, tone:p.type==='label'?p.tone:'nudge', label:p.type==='label'?p.label:null, count:p.type==='count'?3:null }) },
+    return ['subtle','outlined','filled'].map(e => `<div class="badge-row"><span class="cap">${e}</span><div class="row" style="gap:8px">${tones.map(([t, l]) => badgeHTML({tone:t, variant:e, label:l})).join('')}</div></div>`).join('')
+      + `<div class="badge-row"><span class="cap">count, dot</span><div class="row" style="gap:8px">${countBadgeHTML(3)}${countBadgeHTML(12)}${countBadgeHTML(100)}${dotBadgeHTML()}</div></div>`; },
+  schema:p => ({ type:'badge', tone:p.tone, variant:p.variant, label:p.label }) },
 
 { id:'skeleton', name:'Skeleton', group:'feedback', w:W,
   summary:'Grey placeholders in the shape of content that is still loading, from a single line up to a whole screen.',
@@ -1218,7 +1237,7 @@ const FOUNDATIONS = [
     <div class="role"><span class="cap">Interactive · ClearBlue</span><p class="role-p">Links, controls and selection.</p>
       <div class="col" style="align-items:flex-start;gap:12px"><button class="ds-btn ds-btn--link">See payment history</button>
       <div class="row"><label class="ds-check"><input type="checkbox" class="ds-box" checked><span>Auto-pay</span></label><input type="checkbox" role="switch" class="ds-toggle" checked aria-label="Reminders"></div>
-      ${chipHTML({ selected:'on', left:'check', right:'none', label:'Maintenance' })}${tabsHTML({style:'underline',count:2,icons:'off'})}</div></div>
+      ${chipHTML({ selected:true, label:'Maintenance' })}${tabsHTML({style:'underline',count:2,icons:'off'})}</div></div>
     <div class="role role--grey"><span class="cap">Neutral · around them</span><p class="role-p">Supporting actions and navigation. Shown on page-strong to prove nothing merges.</p>
       <div class="col" style="align-items:flex-start;gap:12px"><div class="row"><button class="ds-btn ds-btn--secondary ds-btn--sm">View bill</button><button class="ds-btn ds-btn--ghost ds-btn--sm">Later</button><button class="ds-iconbtn ds-iconbtn--tonal ds-iconbtn--sm" aria-label="Notifications">${icon('bell')}</button></div>
       ${tabsHTML({style:'segmented',count:2,icons:'off'})}</div></div>
@@ -1588,6 +1607,7 @@ document.addEventListener('click', e => {
 const drawer = $('#drawer'), drInner = $('#dr-inner');
 const dp = {}; let codeTab = {};
 const CLOSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function parseProp(id, name, raw){ const pr = (ALL[id].props || []).find(x => x.name === name); return pr && pr.bool ? raw === 'true' : raw; }
 function propsFor(id){
   if (!dp[id]) { dp[id] = {}; (ALL[id].props || []).forEach(p => dp[id][p.name] = p.def !== undefined ? p.def : p.options[0]); }
   return dp[id];
@@ -1710,7 +1730,7 @@ function renderDrawer(keepScroll){
 }
 const propsUI = (d, p) => d.props.map(pr => `<div class="prop"><span class="prop-k">${pr.name}</span>${pr.text
   ? `<input class="prop-in" data-prop="${pr.name}" value="${esc(p[pr.name])}" aria-label="${pr.name}">`
-  : `<div class="seg" role="radiogroup" aria-label="${pr.name}">${pr.options.map(o => `<button role="radio" aria-checked="${String(p[pr.name]) === o}" data-prop="${pr.name}" data-val="${o}">${o}</button>`).join('')}</div>`}</div>`).join('');
+  : `<div class="seg" role="radiogroup" aria-label="${pr.name}">${pr.options.map(o => `<button role="radio" aria-checked="${String(p[pr.name]) === String(o)}" data-prop="${pr.name}" data-val="${o}">${o}</button>`).join('')}</div>`}</div>`).join('');
 const codeBox = (id, tabs, cur, codeId) => `<div class="codebox"><div class="code-bar"><div class="seg" role="tablist" aria-label="Code format">${tabs.map(([k, l]) => `<button role="tab" aria-checked="${k === cur}" aria-selected="${k === cur}" data-tab="${k}">${l}</button>`).join('')}</div><button class="copy" data-copy-code>Copy</button></div><pre><code id="${codeId}"></code></pre></div><p class="note">${ALL[id].props ? 'Schema is how the server describes this component in a server-driven screen.' : 'Semantic tokens point at primitive variables; a mode switch only changes the alias.'}</p>`;
 
 /* ================= Specs: anatomy read from the component CSS ================= */
@@ -1759,7 +1779,7 @@ function partsOf(root){
 const tokChip = ({ t, cat, pp }) => { const m = META[t]; const label = m.dyn ? m.dyn() : m.figma.replace(/^Color\//, '');
   return m.sem ? `<span class="tk" title="${esc(pp + ': ' + m.figma)}"><i style="background:var(${t})"></i>${esc(label)}<em>${CAT_LABEL[cat]}</em></span>`
     : `<span class="tk tk--dim" title="${esc(pp)}">${esc(label)}<em>${pp.replace('border-radius', 'radius')}</em></span>`; };
-const specBlock = (id, p, key) => `<div class="spec" data-spec="${id}"><div class="spec-wrap"><div class="stage spec-stage">${ALL[id].render(p, key)}</div><div class="spec-ovl" aria-hidden="true"></div></div><div class="spec-bar"><button class="spec-toggle" aria-pressed="false">Show spacing</button><span class="note">Numbers match the table. Hover a row to find the part.</span></div><table class="spec-table"></table></div>`;
+const specBlock = (id, p, key, html) => `<div class="spec" data-spec="${id}"><div class="spec-wrap"><div class="stage spec-stage">${html || ALL[id].render(p, key)}</div><div class="spec-ovl" aria-hidden="true"></div></div><div class="spec-bar"><button class="spec-toggle" aria-pressed="false">Show spacing</button><span class="note">Numbers match the table. Hover a row to find the part.</span></div><table class="spec-table"></table></div>`;
 const spLabel = px => { const k = Object.keys(SPACING).find(k => SPACING[k] === px); return k || (px + 'px'); };
 function annotate(sp){
   const stage = $('.spec-stage', sp), ovl = $('.spec-ovl', sp), table = $('.spec-table', sp), wrap = $('.spec-wrap', sp);
@@ -1805,7 +1825,7 @@ function updatePreview(){ const d = ALL[active]; $('#dr-stage').innerHTML = d.re
 drInner.addEventListener('click', e => {
   if (e.target.closest('.dr-close')) { closeDoc(); return; }
   const pb = e.target.closest('[data-prop][data-val]');
-  if (pb) { propsFor(active)[pb.dataset.prop] = pb.dataset.val; $$(`[data-prop="${pb.dataset.prop}"][data-val]`, drInner).forEach(b => b.setAttribute('aria-checked', b === pb)); updatePreview(); return; }
+  if (pb) { propsFor(active)[pb.dataset.prop] = parseProp(active, pb.dataset.prop, pb.dataset.val); $$(`[data-prop="${pb.dataset.prop}"][data-val]`, drInner).forEach(b => b.setAttribute('aria-checked', b === pb)); updatePreview(); return; }
   const tb = e.target.closest('[data-tab]');
   if (tb) { codeTab[active] = tb.dataset.tab; $$('[data-tab]', drInner).forEach(b => { b.setAttribute('aria-checked', b === tb); b.setAttribute('aria-selected', b === tb); }); updateCode(); return; }
   if (e.target.closest('[data-copy-code]')) { copyText(codeFor(active).text, e.target.closest('[data-copy-code]'), 'Copy'); return; }
@@ -1885,8 +1905,8 @@ function docComponent(id){
   let h = docHeader(g.title, d.name, d.summary, `<div class="dx-tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" aria-selected="${k === tab}" data-dtab="${k}">${l}</button>`).join('')}</div>`);
   if (tab === 'overview') {
     h += dsec('playground', 'Playground', `<div class="stage dx-stage center" id="dx-play">${d.render(p, 'dx')}</div><div class="props dx-props">${propsUI(d, p)}</div>`, 'Change the options to see every combination. The code tab follows these options.');
-    if (d.types) h += dsec('types', 'Types', `<div class="types dx-types">${d.types.map((t, i) => `<div class="type-card"><div class="stage type-stage">${d.render({...defaultsFor(id), ...t.p}, 'dt' + i)}</div><div class="type-txt"><b>${t.name}</b><span>${esc(t.desc)}</span></div></div>`).join('')}</div>`);
-    h += dsec('variants', 'Variants and states', `<table class="var-table dx-table"><thead><tr><th>Property</th><th>Values</th><th>What it does</th></tr></thead><tbody>${d.props.filter(pr => !pr.text).map(pr => { const def = pr.def !== undefined ? pr.def : pr.options[0]; return `<tr><td class="mono">${pr.name}</td><td>${pr.options.map(o => o === def ? `<b>${o}</b>` : o).join(', ')}</td><td>${esc(pr.desc || '')}</td></tr>`; }).join('')}<tr><td class="mono">content</td><td>${d.props.filter(pr => pr.text).map(pr => pr.name).join(', ') || 'none'}</td><td>Text the server sends.</td></tr></tbody></table>`, 'Bold is the default.');
+    if (d.types) h += dsec('types', 'Types', `<div class="types dx-types">${d.types.map((t, i) => `<div class="type-card"><div class="stage type-stage">${t.render ? t.render('dt' + i) : d.render({...defaultsFor(id), ...t.p}, 'dt' + i)}</div><div class="type-txt"><b>${t.name}</b><span>${esc(t.desc)}</span></div></div>`).join('')}</div>`);
+    h += dsec('variants', 'Variants and states', `<table class="var-table dx-table"><thead><tr><th>Property</th><th>Values</th><th>What it does</th><th>Figma</th></tr></thead><tbody>${d.props.filter(pr => !pr.text).map(pr => { const def = pr.def !== undefined ? pr.def : pr.options[0]; return `<tr><td class="mono">${pr.name}</td><td>${pr.options.map(o => o === def ? `<b>${o}</b>` : o).join(', ')}</td><td>${esc(pr.desc || '')}</td><td>${esc(pr.figma || '—')}</td></tr>`; }).join('')}<tr><td class="mono">content</td><td>${d.props.filter(pr => pr.text).map(pr => pr.name).join(', ') || 'none'}</td><td>Text the server sends.</td><td>—</td></tr></tbody></table>`, 'Bold is the default.');
     if (related(id).length) h += dsec('related', 'Related', `<div class="rel">${related(id).map(r => `<a href="#doc-${r.id}">${ALL[r.id].name}<span>${r.label}</span></a>`).join('')}</div>`);
   } else if (tab === 'usage') {
     if (d.guidelines) h += dsec('guidelines', 'Usage guidelines', dlist(d.guidelines));
@@ -1895,7 +1915,7 @@ function docComponent(id){
   } else if (tab === 'specs') {
     h += dsec('anatomy', 'Anatomy', `<ol class="anat">${d.anatomy.map(([n, t]) => `<li><div><b>${n}</b> <span>${esc(t)}</span></div></li>`).join('')}</ol>`);
     (d.types || [{ name:'Default', p:{}, desc:'' }]).forEach((t, i) => {
-      h += dsec('spec-' + i, t.name, specBlock(id, {...defaultsFor(id), ...t.p}, 'spec' + i), esc(t.desc) + ' Colour, type, spacing and size tokens for each part.');
+      h += dsec('spec-' + i, t.name, specBlock(id, {...defaultsFor(id), ...t.p}, 'spec' + i, t.render ? t.render('spec' + i) : null), esc(t.desc) + ' Colour, type, spacing and size tokens for each part.');
     });
   } else {
     h += dsec('code', 'Code', codeBox(id, [['html','HTML'],['css','CSS'],['schema','Schema']], codeTab[id] || 'html', 'dx-code'), 'For the options set in the playground on the Overview tab.');
@@ -1943,7 +1963,7 @@ function renderDoc(id, keepScroll){
 docsEl.addEventListener('click', e => {
   const dt = e.target.closest('[data-dtab]'); if (dt) { docTab[docId] = dt.dataset.dtab; renderDoc(docId); return; }
   const pb = e.target.closest('[data-prop][data-val]');
-  if (pb && ALL[docId] && ALL[docId].props) { propsFor(docId)[pb.dataset.prop] = pb.dataset.val; $$(`[data-prop="${pb.dataset.prop}"][data-val]`, dxPage).forEach(b => b.setAttribute('aria-checked', b === pb)); $('#dx-play').innerHTML = ALL[docId].render(propsFor(docId), 'dx'); updateDocCode(); return; }
+  if (pb && ALL[docId] && ALL[docId].props) { propsFor(docId)[pb.dataset.prop] = parseProp(docId, pb.dataset.prop, pb.dataset.val); $$(`[data-prop="${pb.dataset.prop}"][data-val]`, dxPage).forEach(b => b.setAttribute('aria-checked', b === pb)); $('#dx-play').innerHTML = ALL[docId].render(propsFor(docId), 'dx'); updateDocCode(); return; }
   const tb = e.target.closest('[data-tab]'); if (tb) { codeTab[docId] = tb.dataset.tab; $$('[data-tab]', dxPage).forEach(b => { b.setAttribute('aria-checked', b === tb); b.setAttribute('aria-selected', b === tb); }); updateDocCode(); return; }
   const cc = e.target.closest('[data-copy-code]'); if (cc) { copyText(codeFor(docId).text, cc, 'Copy'); return; }
   const tc = e.target.closest('[data-toc]'); if (tc) { const s = document.getElementById(tc.dataset.toc); if (s) s.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block:'start' }); return; }
