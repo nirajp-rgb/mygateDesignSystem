@@ -78,33 +78,27 @@
     3
   ],
   [
-    "--color-content-action-outlined",
-    "--color-surface-primary",
-    "Outlined accent text",
+    "--color-content-positive",
+    "--color-surface-positive-subtle",
+    "Success text",
     4.5
   ],
   [
-    "--color-content-positive-outlined",
-    "--color-surface-primary",
-    "Outlined success text",
+    "--color-content-info",
+    "--color-surface-info-subtle",
+    "Info text",
     4.5
   ],
   [
-    "--color-content-negative-outlined",
+    "--color-content-positive",
     "--color-surface-primary",
-    "Outlined error text",
+    "Success text on a card",
     4.5
   ],
   [
-    "--color-content-warning-outlined",
+    "--color-content-info",
     "--color-surface-primary",
-    "Outlined warning text",
-    4.5
-  ],
-  [
-    "--color-content-info-outlined",
-    "--color-surface-primary",
-    "Outlined info text",
+    "Info text on a card",
     4.5
   ]
 ]

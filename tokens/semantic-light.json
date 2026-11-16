@@ -262,61 +262,6 @@
           }
         }
       },
-      "action-outlined": {
-        "$type": "color",
-        "$value": "{Color.brand.ClearBlue-600}",
-        "$description": "Text and icons in outlined accent badges and banners. Light uses the same primitive as Content/action; Dark uses the same primitive as Border/action, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "positive-outlined": {
-        "$type": "color",
-        "$value": "{Color.green.600}",
-        "$description": "Text and icons in outlined success badges and banners. Light uses the same primitive as Content/positive; Dark uses the same primitive as Border/positive, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "negative-outlined": {
-        "$type": "color",
-        "$value": "{Color.red.600}",
-        "$description": "Text and icons in outlined error badges and banners. Light uses the same primitive as Content/negative; Dark uses the same primitive as Border/negative, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "warning-outlined": {
-        "$type": "color",
-        "$value": "{Color.orange.700}",
-        "$description": "Text and icons in outlined warning badges and banners. Light uses the same primitive as Content/warning; Dark uses the same primitive as Border/warning, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "info-outlined": {
-        "$type": "color",
-        "$value": "{Color.blue.600}",
-        "$description": "Text and icons in outlined info badges and banners. Light uses the same primitive as Content/info; Dark uses the same primitive as Border/info, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
       "rating-star": {
         "$type": "color",
         "$value": "{Color.orange.400}",

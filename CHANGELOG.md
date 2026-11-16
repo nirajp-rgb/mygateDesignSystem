@@ -6,12 +6,11 @@ Every change to tokens or components gets a line here, newest first.
 
 ### Tokens
 
-- Added: `Content/action-outlined`, `positive-outlined`, `negative-outlined`, `warning-outlined` and `info-outlined`, for text and icons in outlined badges and banners. Light uses the same primitive as `Content/{role}`. Dark uses the same primitive as `Border/{role}`, so the text matches its outline. **Not in Figma yet.**
-- Contrast: in Dark, outlined success (3.8:1), info (3.1:1), accent (4.1:1) and error (4.3:1) text is below 4.5:1. `npm run check` now reports these. ROADMAP item 6 suggests a fix.
+- Changed: Dark `Content/positive` → green/400, `Content/negative` → red/400 and `Content/info` → blue/400: the same primitives as `Border/positive`, `Border/negative` and `Border/info`. Outlined badges and banners now have one colour for text and outline. `Content/warning` already matched `Border/warning`.
+- Contrast: these Dark text colours are below 4.5:1 on `Surface/primary` (success 3.8:1, info 3.1:1) and on their subtle fills (success 3.3:1, info 3.4:1). Error passes. `npm run check` reports them.
 
 ### Components
 
-- Badge, Banner: the outlined emphasis uses the new `Content/*-outlined` tokens. Neutral outlined badges are unchanged, because `Border/dark` is 2.1:1 in Dark and can't carry text.
 - Chip: left and right icon slots. The left slot takes the check (shown when selected) or any icon, which the check replaces when the chip is selected. The right slot takes a dropdown caret or a clear icon. Figma properties are listed in the docs.
 
 ## 0.1.0 · 2026-11-16

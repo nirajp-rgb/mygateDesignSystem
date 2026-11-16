@@ -94,7 +94,7 @@ For native apps or the server-driven UI, read `dist/tokens.light.json` and `dist
 - **Count badges:** white on `Surface/nudge` (red/400) is 3.7:1 for 12px text. Mapping nudge to red/600 would fix it.
 - **Meta text:** `Content/tertiary` (gray/500) is 3.6:1. Use it only for timestamps and meta, never for sentences.
 - **Disabled labels:** 1.9:1 in light mode. Disabled text is exempt from WCAG, but it may be too faint.
-- **Outlined status text in dark mode:** `Content/*-outlined` shares the primitive of `Border/*`, so text matches its outline, but the 400 shades are 3.1–4.3:1 on `Surface/primary`. Adding a 300 step would fix both (see `ROADMAP.md`).
+- **Status text in dark mode:** `Content/positive`, `negative` and `info` share the primitive of their `Border` token. The 400 shades are 3.1–3.8:1 for success and info. Adding a 300 step would fix text and border together (see `ROADMAP.md`).
 
 ## Not done yet
 

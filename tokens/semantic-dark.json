@@ -220,23 +220,23 @@
       },
       "positive": {
         "$type": "color",
-        "$value": "{Color.green.200}",
+        "$value": "{Color.green.400}",
         "$description": "Success text.",
         "$extensions": {
           "mds": {
             "status": "changed",
-            "note": "Was green/400: 4.1:1 on white and 3.8:1 on dark."
+            "note": "Was green/400: 4.1:1 on white and 3.8:1 on dark. Dark now uses green/400, the same primitive as Border/positive, so outlined badges and banners have one colour for text and outline."
           }
         }
       },
       "negative": {
         "$type": "color",
-        "$value": "{Color.red.200}",
+        "$value": "{Color.red.400}",
         "$description": "Error text, field error messages.",
         "$extensions": {
           "mds": {
             "status": "changed",
-            "note": "Was red/400: 3.7:1 on white."
+            "note": "Was red/400: 3.7:1 on white. Dark now uses red/400, the same primitive as Border/negative, so outlined badges and banners have one colour for text and outline."
           }
         }
       },
@@ -253,67 +253,12 @@
       },
       "info": {
         "$type": "color",
-        "$value": "{Color.blue.200}",
+        "$value": "{Color.blue.400}",
         "$description": "Info text.",
         "$extensions": {
           "mds": {
             "status": "changed",
-            "note": "Dark was blue/400: 3.1:1 on dark surfaces."
-          }
-        }
-      },
-      "action-outlined": {
-        "$type": "color",
-        "$value": "{Color.brand.ClearBlue-400}",
-        "$description": "Text and icons in outlined accent badges and banners. Light uses the same primitive as Content/action; Dark uses the same primitive as Border/action, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "positive-outlined": {
-        "$type": "color",
-        "$value": "{Color.green.400}",
-        "$description": "Text and icons in outlined success badges and banners. Light uses the same primitive as Content/positive; Dark uses the same primitive as Border/positive, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "negative-outlined": {
-        "$type": "color",
-        "$value": "{Color.red.400}",
-        "$description": "Text and icons in outlined error badges and banners. Light uses the same primitive as Content/negative; Dark uses the same primitive as Border/negative, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "warning-outlined": {
-        "$type": "color",
-        "$value": "{Color.orange.400}",
-        "$description": "Text and icons in outlined warning badges and banners. Light uses the same primitive as Content/warning; Dark uses the same primitive as Border/warning, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
-          }
-        }
-      },
-      "info-outlined": {
-        "$type": "color",
-        "$value": "{Color.blue.400}",
-        "$description": "Text and icons in outlined info badges and banners. Light uses the same primitive as Content/info; Dark uses the same primitive as Border/info, so the text matches its outline.",
-        "$extensions": {
-          "mds": {
-            "status": "added",
-            "note": ""
+            "note": "Dark was blue/400: 3.1:1 on dark surfaces. Dark now uses blue/400, the same primitive as Border/info, so outlined badges and banners have one colour for text and outline."
           }
         }
       },
